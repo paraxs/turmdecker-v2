@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import ContentSection from "../components/ContentSection.astro";
+
+// BILDER IMPORTIEREN
+import imgEindeckung01 from "../assets/eindeckung/eindeckung01.jpg";
+import imgEindeckung02 from "../assets/eindeckung/eindeckung02.jpg";
+import imgEindeckung03 from "../assets/eindeckung/eindeckung03.jpg";
+---
+
+<Layout
+  title="Eindeckungen | Turmdecker (Kofler e.U.)"
+  description="Eindeckungen mit Holzschindel, Blech und Stein/Schiefer – handwerklich korrekt, langlebig und bei Bedarf gerüstfrei über Seiltechnik."
+>
+  <Header slot="header" />
+
+  <Hero
+   images={[imgEindeckung01, imgEindeckung02, imgEindeckung03]}
+   heightClass="h-[55vh]"
+   contentClass="pt-24 md:pt-28"
+   overlayClass="bg-black/45"
+   storageKey="tdHero:eindeckungen"
+  >
+    <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">
+      Gerüstfreies Kirchturm- &amp; Dachdecken
+    </p>
+
+    <h1 class="text-4xl md:text-6xl font-bold mt-4">
+      EINDECKUNGEN<span class="text-primary">.</span>
+    </h1>
+
+    <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
+      Ob Holz, Metall oder Stein – wir beherrschen die traditionellen Handwerkstechniken in jeder Höhe.
+    </p>
+  </Hero>
+
+  <ContentSection
+    title="Holzschindel"
+    image={imgEindeckung01}
+    alt="Holzschindel Eindeckung Kirchturm"
+  >
+    <p>
+      Holzschindeln sind die ursprünglichste Form der Dacheindeckung im Alpenraum.
+      Wir verwenden ausschließlich handgespaltene Lärchenschindeln bester Qualität.
+    </p>
+    <ul class="list-disc pl-5 mt-4 space-y-2">
+      <li>Lange Haltbarkeit durch richtige Spaltung</li>
+      <li>Natürliche Vergrauung als Holzschutz</li>
+      <li>Historisch korrekte Verlegung (2- oder 3-fach Deckung)</li>
+    </ul>
+  </ContentSection>
+
+  <ContentSection
+    title="Blechverarbeitung"
+    image={imgEindeckung02}
+    alt="Blech Eindeckung / Spenglerarbeiten"
+    reverse={true}
+  >
+    <p>
+      Metall ist langlebig und wartungsarm. Wir arbeiten mit Kupfer, Titanzink, Aluminium und Blei.
+      Gerade bei komplexen Turmgeometrien ist handwerkliches Geschick beim Falzen entscheidend.
+    </p>
+    <p class="mt-4">
+      Besonders spezialisiert sind wir auf die <strong>gerüstfreie Sanierung</strong> von Sturmschäden an Blechdächern.
+    </p>
+  </ContentSection>
+
+  <ContentSection
+    title="Stein & Schiefer"
+    image={imgEindeckung03}
+    alt="Steinplatten / Schiefer Eindeckung"
+  >
+    <p>
+      Steindächer trotzen den härtesten Witterungen. Egal ob Naturschiefer oder die typischen Steinplattl-Dächer
+      unserer Region – wir haben die Erfahrung für die fachgerechte Sanierung.
+    </p>
+    <p class="mt-4">
+      Durch Seiltechnik erreichen wir einzelne beschädigte Platten ohne teuren Hubsteiger-Einsatz.
+    </p>
+  </ContentSection>
+
+  <section class="bg-primary text-white py-16 text-center">
+    <div class="container mx-auto px-4">
+      <h3 class="text-2xl font-bold mb-4">Brauchen Sie eine Einschätzung?</h3>
+      <p class="mb-8 opacity-90">Wir erstellen gerne ein Gutachten über den Zustand Ihrer Eindeckung.</p>
+      <a
+        href="/kontakt"
+        class="bg-white text-primary px-8 py-3 font-bold rounded hover:bg-dark-900 hover:text-white transition-colors"
+      >
+        Kontakt aufnehmen
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>

@@ -1,0 +1,55 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  noindex?: boolean;
+  ogImage?: string; // optional: z.B. "/og.jpg"
+}
+
+const { title, description, noindex, ogImage } = Astro.props as Props;
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : null;
+const desc = description ?? "Turmdecker - Gerüstfreies Kirchturmdecken";
+---
+
+<!doctype html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- CD Farbe für Browser UI / Mobile -->
+    <meta name="theme-color" content="#8F1D1D" />
+
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+
+    <!-- Canonical nur wenn site gesetzt ist -->
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <!-- Optional: Social Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {ogImage && <meta property="og:image" content={Astro.site ? new URL(ogImage, Astro.site).href : ogImage} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={desc} />
+    {ogImage && <meta name="twitter:image" content={Astro.site ? new URL(ogImage, Astro.site).href : ogImage} />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <slot name="head" />
+  </head>
+
+  <body class="bg-white text-gray-900 font-sans">
+    <slot name="header" />
+    <main><slot /></main>
+    <slot name="footer" />
+  </body>
+</html>

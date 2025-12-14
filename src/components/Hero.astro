@@ -1,0 +1,115 @@
+---
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  images: ImageMetadata[];
+  heightClass?: string;   // z.B. "h-[85vh]" oder "h-[55vh]"
+  contentClass?: string;  // z.B. "pt-24 md:pt-28" oder "mt-14 md:mt-16"
+  overlayClass?: string;  // z.B. "bg-black/35"
+  storageKey?: string;    // z.B. "tdHero:index"
+  allowRepeat?: boolean;  // default false
+  bgPositionClass?: string; // NEU: z.B. "bg-center md:bg-[70%_center]"
+}
+
+const {
+  images,
+  heightClass = "h-[55vh]",
+  contentClass = "mt-14 md:mt-16",
+  overlayClass = "bg-black/35",
+  storageKey = "tdHero",
+  allowRepeat = false,
+  bgPositionClass = "bg-center", // NEU: Default wie bisher
+} = Astro.props as Props;
+
+const srcs = (images ?? []).map((i) => i?.src).filter(Boolean) as string[];
+const fallback = srcs[0] ?? "";
+---
+
+<section class={`relative ${heightClass} flex items-center bg-dark-900 text-white overflow-hidden`}>
+  <div class="absolute inset-0 z-0">
+    <div
+      class={`hero-bg absolute inset-0 bg-cover ${bgPositionClass}`}
+      data-hero-images={JSON.stringify(srcs)}
+      data-hero-key={storageKey}
+      data-hero-allow-repeat={allowRepeat ? "1" : "0"}
+      style={fallback ? `background-image:url('${fallback}')` : undefined}
+    ></div>
+
+    <div class="hero-fade absolute inset-0 bg-cover bg-center opacity-0"></div>
+
+    <div class={`absolute inset-0 ${overlayClass}`}></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
+  </div>
+
+  <div class={`container mx-auto px-4 relative z-10 ${contentClass}`}>
+    <slot />
+  </div>
+
+  <style>
+    .hero-fade { transition: opacity 520ms ease; will-change: opacity; }
+    @media (prefers-reduced-motion: reduce){
+      .hero-fade { transition: none; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      const root = document.currentScript && document.currentScript.closest("section");
+      if (!root) return;
+
+      const bg = root.querySelector(".hero-bg");
+      const fade = root.querySelector(".hero-fade");
+      if (!bg || !fade) return;
+
+      const list = JSON.parse(bg.getAttribute("data-hero-images") || "[]");
+      const key = bg.getAttribute("data-hero-key") || "tdHero";
+      const allowRepeat = bg.getAttribute("data-hero-allow-repeat") === "1";
+
+      if (!Array.isArray(list) || list.length === 0) return;
+
+      const prefersReduced =
+        window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Test: ?hero=2 erzwingt Bild 2
+      const qp = new URLSearchParams(location.search).get("hero");
+      let idx;
+
+      if (qp && !isNaN(parseInt(qp, 10))) {
+        idx = Math.max(0, Math.min(list.length - 1, parseInt(qp, 10) - 1));
+      } else {
+        idx = Math.floor(Math.random() * list.length);
+
+        if (!allowRepeat && list.length > 1) {
+          const last = sessionStorage.getItem(key);
+          if (last !== null && Number(last) === idx) idx = (idx + 1) % list.length;
+          sessionStorage.setItem(key, String(idx));
+        }
+      }
+
+      const url = list[idx];
+      if (!url) return;
+
+      // Wenn es eh schon das gleiche ist: nix tun
+      const current = bg.style.backgroundImage || "";
+      if (current.includes(url)) return;
+
+      const img = new Image();
+      img.onload = () => {
+        if (prefersReduced) {
+          bg.style.backgroundImage = `url('${url}')`;
+          fade.style.opacity = "0";
+          return;
+        }
+
+        fade.style.backgroundImage = `url('${url}')`;
+        fade.style.opacity = "1";
+
+        window.setTimeout(() => {
+          bg.style.backgroundImage = `url('${url}')`;
+          fade.style.opacity = "0";
+        }, 560);
+      };
+      img.src = url;
+    })();
+  </script>
+</section>

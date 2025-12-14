@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import ContentSection from "../components/ContentSection.astro";
+
+import imgSpezial01 from "../assets/spezialarbeiten/spezialarbeiten01.jpg";
+import imgSpezial02 from "../assets/spezialarbeiten/spezialarbeiten02.jpg";
+import imgSpezial03 from "../assets/spezialarbeiten/spezialarbeiten03.jpg";
+---
+
+<Layout
+  title="Spezialarbeiten | Turmdecker (Kofler e.U.)"
+  description="Seilunterstützte Höhen- und Spezialarbeiten: schnelle, sichere Ausführung ohne Gerüst – ideal bei schwierigen Zugängen."
+>
+  <Header slot="header" />
+
+  <Hero
+    images={[imgSpezial01, imgSpezial02, imgSpezial03]}
+    heightClass="h-[55vh]"
+    contentClass="pt-24 md:pt-28"
+    overlayClass="bg-black/45"
+    storageKey="tdHero:spezialarbeiten"
+  >
+    <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">
+      Höhen- und Spezialarbeiten
+    </p>
+
+    <h1 class="text-4xl md:text-6xl font-bold mt-4">
+      SPEZIALARBEITEN<span class="text-primary">.</span>
+    </h1>
+
+    <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
+      Seilunterstützte Arbeit, wenn Zugang, Zeit und Sicherheit entscheidend sind – ohne unnötiges Einrüsten.
+    </p>
+  </Hero>
+
+  <ContentSection
+    title="Seilunterstützte Höhenarbeiten"
+    image={imgSpezial01}
+    alt="Seilunterstützte Arbeiten am Objekt"
+  >
+    <p>
+      Wir arbeiten dort, wo Hubsteiger oder Gerüst wirtschaftlich keinen Sinn machen.
+      Der Vorteil: kurze Rüstzeiten, präzise Ausführung, weniger Eingriff in die Umgebung.
+    </p>
+    <ul class="list-disc pl-5 mt-4 space-y-2">
+      <li>Arbeiten an Türmen, Fassaden und Dachflächen</li>
+      <li>Kontrollen, kleinere Sanierungen, Reparaturen</li>
+      <li>Schwer zugängliche Details ohne „Großgerät“</li>
+    </ul>
+  </ContentSection>
+
+  <ContentSection
+    title="Fassade, Montage & Reparatur"
+    image={imgSpezial02}
+    alt="Spezialarbeiten an Fassade / Montage"
+    reverse={true}
+  >
+    <p>
+      Typische Einsätze: lokale Schadstellen, Anschlüsse, Bleche, Abdeckungen, Fixpunkte.
+      Ziel ist immer: langlebig, sauber, nachvollziehbar dokumentiert.
+    </p>
+    <ul class="list-disc pl-5 mt-4 space-y-2">
+      <li>Fassadenarbeiten (punktuell statt flächig einrüsten)</li>
+      <li>Montage / Demontage an exponierten Stellen</li>
+      <li>Instandsetzung im Bestand</li>
+    </ul>
+  </ContentSection>
+
+  <section class="bg-primary text-white py-16 text-center">
+    <div class="container mx-auto px-4">
+      <h3 class="text-2xl font-bold mb-4">Spezialfall am Objekt?</h3>
+      <p class="mb-8 opacity-90">Schick uns Fotos – wir sagen dir direkt, ob es ohne Gerüst sinnvoll lösbar ist.</p>
+      <a
+        href="/kontakt"
+        class="bg-white text-primary px-8 py-3 font-bold rounded hover:bg-dark-900 hover:text-white transition-colors"
+      >
+        Kontakt aufnehmen
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>

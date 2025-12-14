@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Impressum | Turmdecker (Kofler e.U.)"
+  description="Impressum und gesetzliche Informationen zu Turmdecker (Kofler e.U.), Lienz in Osttirol."
+>
+  <Header slot="header" />
+
+  <main class="bg-white text-dark-900">
+    <section class="pt-28 md:pt-32 pb-16 md:pb-20 border-b border-gray-200">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h1 class="text-3xl md:text-4xl font-bold mb-6">
+          Impressum
+        </h1>
+
+        <p class="text-sm text-gray-500 mb-10">
+          Angaben gemäß § 5 E-Commerce-Gesetz (ECG), § 14 Unternehmensgesetzbuch (UGB),
+          § 24 Mediengesetz (MedienG) und § 63 Gewerbeordnung (GewO).
+        </p>
+
+        <div class="space-y-8 text-sm md:text-base leading-relaxed text-gray-800">
+
+          <section>
+            <h2 class="font-semibold text-lg mb-2">Medieninhaber / Betreiber der Website</h2>
+            <p>
+              <span class="font-semibold">Turmdecker (Kofler e.U.)</span><br />
+              Peggetzstraße 20<br />
+              9900 Lienz, Osttirol<br />
+              Österreich
+            </p>
+          </section>
+
+          <section>
+            <h2 class="font-semibold text-lg mb-2">Kontakt</h2>
+            <p>
+              Telefon: <a href="tel:+436644328298" class="text-primary hover:underline">+43 664 4328298</a><br />
+              E-Mail: <a href="mailto:office@turmdecker.com" class="text-primary hover:underline">office@turmdecker.com</a><br />
+              Web: <a href="https://www.turmdecker.com" class="text-primary hover:underline">www.turmdecker.com</a>
+            </p>
+          </section>
+
+          <section>
+            <h2 class="font-semibold text-lg mb-2">Unternehmensdaten</h2>
+            <p>
+              Unternehmensbezeichnung: Turmdecker (Kofler e.U.)<br />
+              Rechtsform: Einzelunternehmen<br />
+              Inhaber: Franz Kofler <!-- falls im Firmenbuch anders eingetragen, bitte anpassen --><br />
+              Unternehmensgegenstand: Dachdeckerei, Spenglerei, gerüstfreie Höhenarbeiten und Spezialarbeiten an Dächern, Fassaden und Kirchtürmen
+            </p>
+          </section>
+
+          <section>
+            <h2 class="font-semibold text-lg mb-2">Firmenbuch / Aufsichtsbehörden</h2>
+            <p>
+              Firmenbuchgericht: [eintragen, z.&nbsp;B. Landesgericht Innsbruck]<br />
+              Firmenbuchnummer: [eintragen]<br />
+              UID-Nummer: [eintragen]<br />
+              Mitglied der Wirtschaftskammer Tirol<br />
+              Zuständige Fachgruppe/Innunng: [z.&nbsp;B. Landesinnung Dachdecker/Glasdecker/Spengler]
+            </p>
+          </section>
+
+          <section>
+            <h2 class="font-semibold text-lg mb-2">Berufsrechtliche Vorschriften</h2>
+            <p>
+              Es gelten die aktuellen gewerbe- und berufsrechtlichen Vorschriften für das Dachdecker- und Spenglergewerbe
+              in Österreich (insbesondere Gewerbeordnung, Bau- und Arbeitnehmerschutzbestimmungen).
+              Die jeweils gültigen Fassungen sind unter <a href="https://www.ris.bka.gv.at" class="text-primary hover:underline">
+              www.ris.bka.gv.at</a> abrufbar.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="font-semibold text-lg mb-2">Haftung für Inhalte</h2>
+            <p>
+              Alle Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit
+              und Aktualität der Inhalte wird keine Gewähr übernommen. Haftungsansprüche gegen den Medieninhaber, die sich
+              auf Schäden materieller oder ideeller Art beziehen, welche durch die Nutzung oder Nichtnutzung der dargebotenen
+              Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind
+              ausgeschlossen, sofern kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="font-semibold text-lg mb-2">Haftung für Links</h2>
+            <p>
+              Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte kein Einfluss besteht.
+              Für diese fremden Inhalte wird keine Haftung übernommen; verantwortlich ist stets der jeweilige Anbieter oder Betreiber.
+              Verlinkte Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft; rechtswidrige Inhalte waren
+              zu diesem Zeitpunkt nicht erkennbar.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="font-semibold text-lg mb-2">Urheberrecht</h2>
+            <p>
+              Die auf dieser Website veröffentlichten Inhalte (Texte, Grafiken, Fotos) unterliegen dem Urheberrecht.
+              Jede weitergehende Nutzung, insbesondere Vervielfältigung, Verbreitung oder öffentliche Zurverfügungstellung,
+              bedarf der ausdrücklichen schriftlichen Zustimmung des Rechteinhabers.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer slot="footer" />
+</Layout>

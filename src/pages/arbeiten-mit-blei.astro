@@ -1,0 +1,120 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+
+import heroImage from "../assets/scraped/hero-bg.jpg";
+import imgBleiDetail1 from "../assets/arbeiten-mit-blei/arbeiten-mit-blei01.jpg";
+import imgBleiDetail2 from "../assets/arbeiten-mit-blei/arbeiten-mit-blei02.jpg";
+---
+
+<Layout
+  title="Arbeiten mit Blei | Turmdecker (Kofler e.U.)"
+  description="Bleiarbeiten an historischen Bauwerken: Verbleiungen, Mauerfugen-Anschlüsse, wasserdichte Brunnenwannen und dauerhafter Schutz gefährdeter Details."
+>
+  <Header slot="header" />
+
+  <section class="relative h-[55vh] flex items-center bg-dark-900 text-white overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <Image src={heroImage} alt="" class="object-cover w-full h-full opacity-55" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10 mt-14 md:mt-16">
+      <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">Spezialspenglerei</p>
+      <h1 class="text-4xl md:text-6xl font-bold mt-4">
+        ARBEITEN MIT <span class="text-primary">BLEI</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
+        Verbleiungen und Anschlüsse, wenn es wirklich dicht bleiben muss – besonders an historischen Details,
+        Gesimsen, Abdeckungen und kritischen Übergängen.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-6">Worum es bei Bleiarbeiten geht</h2>
+
+      <p class="text-gray-700 leading-relaxed">
+        In der Praxis zählt nicht „schön“, sondern „dauerhaft dicht“. Bei Verbleiungen sind saubere Stoßverbindungen
+        und eine durchdachte Einbindung in die Bausubstanz entscheidend – damit Wasser nicht hinter die Abdichtung kommt
+        und das Detail langfristig wartungsarm bleibt.
+      </p>
+
+      <ul class="mt-8 space-y-3 text-gray-700">
+        <li>• Verbleiungen / Abdeckungen an gefährdeten Details</li>
+        <li>• Einbindung in Mauerfugen für dauerhaft funktionierende Anschlüsse</li>
+        <li>• Wasserdichte Ausführung von Brunnenwannen / Bleiwannen (je nach Bestand)</li>
+        <li>• Reparaturen und Instandsetzung im Bestand (Denkmalschutz-tauglich)</li>
+      </ul>
+
+      <div class="mt-10 p-6 rounded-md bg-gray-50 border border-gray-200">
+        <h3 class="font-bold text-dark-900 mb-2">Sicherheit & Umgang</h3>
+        <p class="text-gray-700 leading-relaxed">
+          Blei ist kein Spielzeug – aber bei korrektem Umgang
+          ist es im Handwerk beherrschbar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-16 bg-gray-50 border-t border-gray-200">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-6">Ablauf</h2>
+      <ol class="space-y-3 text-gray-700">
+        <li>1) Kurzer Bestand-Check (Detail, Untergrund, Wasserweg)</li>
+        <li>2) Konzept: Anschlussführung, Befestigung, Stoßlösung</li>
+        <li>3) Ausführung + Dichtheits- / Funktionskontrolle</li>
+        <li>4) Dokumentation (Fotos + kurze Maßnahmenbeschreibung)</li>
+      </ol>
+    </div>
+  </section>
+    <section class="py-12 md:py-14 bg-gray-50 border-y border-gray-200">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <figure class="relative overflow-hidden rounded-sm shadow-sm bg-black/5">
+          <Image
+            src={imgBleiDetail1}
+            alt="Verbleiung an einem historischen Gesims"
+            width={900}
+            height={675}
+            class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+
+        <figure class="relative overflow-hidden rounded-sm shadow-sm bg-black/5">
+          <Image
+            src={imgBleiDetail2}
+            alt="Detail einer Bleiabdeckung an einem Turm"
+            width={900}
+            height={675}
+            class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </div>
+
+      <p class="mt-4 text-xs text-gray-500">
+        Beispiele aus der Praxis – saubere Stoßführung, kontrollierte Bewegungsfugen und Blei dort,
+        wo es jahrzehntelang dicht bleiben muss.
+      </p>
+    </div>
+  </section>
+
+
+  <section class="py-20 bg-primary text-white text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">Bleiarbeit im Bestand?</h2>
+      <a href="/kontakt" class="inline-block bg-white text-primary hover:bg-dark-900 hover:text-white px-10 py-4 font-bold rounded transition-all shadow-xl">
+        Kontakt aufnehmen
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>

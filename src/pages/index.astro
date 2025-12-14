@@ -1,0 +1,297 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import Hero from "../components/Hero.astro";
+
+import hero1 from "../assets/scraped/hero-bg.jpg";
+import hero2 from "../assets/scraped/hero-bg-2.jpg";
+import hero3 from "../assets/scraped/hero-bg-3.jpg";
+import hero4 from "../assets/scraped/hero-bg-1.jpg";
+
+import imgHolz from "../assets/eindeckung/eindeckung08.jpg";
+import imgHolz2 from "../assets/eindeckung/eindeckung02.jpg";
+
+import imgSpezial from "../assets/spezialarbeiten/spezialarbeiten01.jpg";
+import imgSpezial2 from "../assets/spezialarbeiten/spezialarbeiten02.jpg";
+
+import imgRestaurierung2 from "../assets/restaurierung/restaurierung01.jpg";
+import imgRestaurierung from "../assets/restaurierung/restaurierung02.jpg";
+
+import imgBlei1 from "../assets/arbeiten-mit-blei/arbeiten-mit-blei01.jpg";
+import imgBlei2 from "../assets/arbeiten-mit-blei/arbeiten-mit-blei02.jpg";
+
+import imgDrohne1 from "../assets/photogrammetrie-digitaler-zwilling/photogrammetrie-digitaler-zwilling03.jpg";
+import imgDrohne2 from "../assets/photogrammetrie-digitaler-zwilling/photogrammetrie-digitaler-zwilling02.jpg";
+
+import imgBleiBrunnen1 from '../assets/blei-brunnenwanne/blei-brunnenwanne01.jpg';
+import imgBleiBrunnen2 from '../assets/blei-brunnenwanne/blei-brunnenwanne02.jpg';
+---
+
+
+<Layout title="Gerüstfreies Kirchturmdecken | Kofler e.U.">
+  <Header slot="header" />
+
+    <Hero
+		images={[hero1, hero2, hero3, hero4]}
+		heightClass="h-[75vh] md:h-[85vh]"
+		contentClass="pt-24 md:pt-28"
+		overlayClass="bg-black/35"
+		storageKey="tdHero:index"
+		bgPositionClass="bg-center md:bg-[70%_center]"
+  >
+     <div class="max-w-xl md:max-w-2xl">
+	<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+		WO IHRE GRENZEN SIND,<br />
+		<span class="text-primary">BEGINNT UNSER ALLTAG.</span>
+	</h1>
+
+	<p class="text-base md:text-lg text-white/90 leading-relaxed">
+		Gerüstfreie Eindeckungen und Sanierungen an Kirchtürmen,<br />
+		Fassaden und historischen Objekten – mit Lärchenschindeln,<br />
+		Kupfer und Schiefer. Photogrammetrie und digitale Zwillinge<br />
+		liefern die Basis für Planung und Denkmalpflege. Effizient, sicher.
+	</p>
+
+    </div>
+  </Hero>
+
+  <section id="leistungen" class="scroll-mt-28 md:scroll-mt-32 bg-white border-y border-gray-200">
+    <div class="container mx-auto px-4 py-16 md:py-20">
+
+      <!-- CD Separator oben -->
+      <div class="relative h-10 mb-14">
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[2px] bg-primary/80"></div>
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 bg-primary rotate-45"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14">
+
+        <!-- Linke Spalte -->
+        <div>
+          <h2 class="text-xl md:text-2xl font-semibold tracking-wide uppercase text-dark-900 mb-4">
+            GERÜSTFREIES KIRCHTURM- &amp; DACHDECKEN
+          </h2>
+
+          <p class="text-gray-900/90 leading-relaxed mb-8">
+            Wir haben uns auf das Eindecken von Dächern und Fassaden spezialisiert und verbinden
+            traditionelle Materialien mit seilunterstützter Zugangstechnik. Vor allem bei Kirchtürmen
+            und hohen Gebäuden können wir Arbeiten ausführen, für die ein klassisches Fassadengerüst
+            kaum sinnvoll wäre – zu aufwendig, zu teuer oder baulich schwer umsetzbar.
+          </p>
+
+          <ul class="space-y-6 text-gray-900/90 leading-relaxed">
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Lärchenholzschindel, Kupfer, Reinzink, Blei, Schiefer und Steinplatten – je nach Aufgabe wählen wir das passende System.</span>
+            </li>
+
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Gerüstfreier Zugang spart in vielen Fällen erhebliche Gerüst- und Nebenkosten.</span>
+            </li>
+
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Kürzere Rüstzeiten und konzentrierter Arbeitseinsatz reduzieren die Gesamtarbeitszeit.</span>
+            </li>
+
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Auch kleinere Ausbesserungs- und Instandhaltungsarbeiten werden so wieder wirtschaftlich machbar.</span>
+            </li>
+
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Wir dokumentieren unsere Arbeiten so, dass sie als Grundlage für Gutachten und weitere Planung dienen können.</span>
+            </li>
+
+
+            <li class="flex gap-4 pt-2">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16v16H4z" /><path d="m4 6 8 6 8-6" />
+                </svg>
+              </span>
+              <a class="text-gray-900/80 hover:text-primary underline underline-offset-4" href="/kontakt">
+                Kontaktieren Sie uns, wir finden eine Lösung.
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Rechte Spalte -->
+        <div>
+          <h2 class="text-xl md:text-2xl font-semibold tracking-wide uppercase text-dark-900 mb-4">
+            HÖHEN- UND SPEZIALARBEITEN
+          </h2>
+
+          <p class="text-gray-900/90 leading-relaxed mb-8">
+            Wo Gerüste keinen Platz finden oder Kräne und Hebebühnen an Grenzen stoßen,
+            setzen wir seilunterstützte Zugangstechnik ein. Damit erreichen wir Fassaden,
+            Türme und Konstruktionen, die sonst kaum oder nur mit unverhältnismäßigem Aufwand bearbeitet werden könnten.
+          </p>
+
+          <ul class="space-y-6 text-gray-900/90 leading-relaxed">
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Seilunterstützte Höhenarbeiten an Kirchtürmen, Fassaden, Hallen und Sonderkonstruktionen.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Geringe Vor- und Nacharbeitszeiten im Vergleich zu großflächigen Gerüsten.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Seilunterstützte Fassadenarbeiten, Montage- und Demontagearbeiten an schwer zugänglichen Bauteilen.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Restaurierungsarbeiten und Instandsetzungen an verschiedenen Eindeckungsarten.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Sandstrahltechnik auf Blech für schonende Reparaturen und Oberflächenvorbereitung.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span>Bleiarbeiten, Verbleiungen von Brunnenwannen, Gesimsen und figuralen Objekten.</span>
+            </li>
+
+            <li class="flex gap-4 pt-2">
+              <span class="mt-1 text-primary shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16v16H4z" /><path d="m4 6 8 6 8-6" />
+                </svg>
+              </span>
+              <a class="text-gray-900/80 hover:text-primary underline underline-offset-4" href="/kontakt">
+                Kontaktieren Sie uns, wir finden eine Lösung.
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- CD Separator unten -->
+      <div class="relative h-10 mt-14">
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[2px] bg-primary/80"></div>
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 bg-primary rotate-45"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="rubriken" class="scroll-mt-28 md:scroll-mt-32 py-14 md:py-16 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+        
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-bold text-dark-900 mb-4">UNSERE LEISTUNGEN</h2>
+        <div class="w-24 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <ServiceCard
+          title="Eindeckungen"
+          href="/eindeckungen"
+          images={[imgHolz, imgHolz2]}
+          altText="Kirchturm mit Holzschindeln gedeckt"
+        />
+
+        <ServiceCard
+          title="Spezialarbeiten"
+          href="/spezialarbeiten"
+          images={[imgSpezial, imgSpezial2]}
+          altText="Industriekletterer am Seil"
+        />
+
+        <ServiceCard
+          title="Restaurierung"
+          href="/restaurierung"
+          images={[imgRestaurierung, imgRestaurierung2]}
+          altText="Restaurierung einer Kirchturmspitze"
+        />
+
+        <ServiceCard
+          title="Arbeiten mit Blei"
+          href="/arbeiten-mit-blei"
+          images={[imgBlei1, imgBlei2]}
+          altText="Bleiarbeiten an historischen Bauwerken"
+        />
+        
+        <ServiceCard
+          title="Blei Brunnenwanne"
+          href="/blei-brunnenwanne"
+          images={[imgBleiBrunnen1, imgBleiBrunnen2]}
+          altText="Historische Brunnen mit nahtlos verschweißten Blei-Brunnenwannen – dauerhaft wasserdicht und wirtschaftlich."
+        />
+
+        <ServiceCard
+          title="Photogrammetrie & Digitaler Zwilling"
+          href="/photogrammetrie-digitaler-zwilling"
+          images={[imgDrohne1, imgDrohne2]}
+          altText="Digitale Bestandsaufnahme mit Drohnen"
+        />
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-24 bg-primary text-white text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">Haben Sie ein Projekt in luftiger Höhe?</h2>
+      <a href="/kontakt" class="inline-block bg-white text-primary hover:bg-dark-900 hover:text-white px-10 py-4 font-bold rounded transition-all shadow-xl">
+        Kontakt aufnehmen
+      </a>
+    </div>
+  </section>
+  
+  <Footer slot="footer" />
+</Layout>

@@ -1,0 +1,126 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/brand/kofler-logo.png";
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === "/" || pathname === "";
+const isKontakt = pathname.startsWith("/kontakt");
+
+const linkBase =
+  "px-1 py-2 rounded-sm transition-colors hover:text-primary " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary " +
+  "focus-visible:ring-offset-2 focus-visible:ring-offset-black/40";
+---
+
+<header id="siteHeader" class="site-header fixed top-0 left-0 right-0 z-50 border-b border-white/10">
+  <div class="container mx-auto px-4 flex justify-between items-center header-inner">
+    <a
+      href="/"
+      aria-label="Turmdecker Startseite"
+      class={"flex items-center gap-3 text-white uppercase tracking-tighter " + linkBase}
+    >
+      <Image
+        src={logo}
+        alt="Kofler e.U. Logo"
+        width={250}
+        height={195}
+        class="header-logo w-auto"
+        loading="eager"
+        decoding="async"
+      />
+      <span class="header-word font-bold">
+        TURM<span class="text-primary">DECKER</span>
+      </span>
+    </a>
+
+    <div class="flex items-center gap-4">
+      <nav class="hidden md:flex gap-8 font-medium">
+        <a href="/" class={linkBase + " " + (isHome ? "text-primary" : "text-white/90")}>Startseite</a>
+        <a href="/#rubriken" class={linkBase + " text-white/90"}>Leistungen</a>
+        <a href="/kontakt" class={linkBase + " " + (isKontakt ? "text-primary" : "text-white/90")}>Kontakt</a>
+      </nav>
+
+      <!-- Mobile Menü ohne JS -->
+      <details class="md:hidden relative">
+        <summary class={"cursor-pointer select-none text-white/90 " + linkBase}>Menü</summary>
+
+        <div class="absolute right-0 mt-3 w-64 rounded-md border border-white/10 bg-black/80 backdrop-blur-sm shadow-xl overflow-hidden">
+          <a href="/" class={"block px-4 py-3 text-white/90 hover:bg-white/10 " + (isHome ? "text-primary" : "")}>Startseite</a>
+          <a href="/#rubriken" class="block px-4 py-3 text-white/90 hover:bg-white/10">Leistungen</a>
+          <a href="/kontakt" class={"block px-4 py-3 text-white/90 hover:bg-white/10 " + (isKontakt ? "text-primary" : "")}>Kontakt</a>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <script is:inline>
+    const header = document.getElementById("siteHeader");
+    if (header) {
+      let ticking = false;
+
+      const update = () => {
+        header.classList.toggle("is-scrolled", window.scrollY > 24);
+        ticking = false;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      };
+
+      update(); // wichtig: lädt direkt im richtigen Zustand (auch bei Reload mitten auf der Seite)
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+  </script>
+
+  <style>
+    .site-header{
+      background: rgba(0,0,0,0.18);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      transition: background-color .25s ease, box-shadow .25s ease;
+    }
+
+    .site-header.is-scrolled{
+      background: rgba(0,0,0,0.72);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+
+    .header-inner{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      transition: padding .25s ease;
+    }
+    .site-header.is-scrolled .header-inner{
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .header-logo{
+      height: 64px;
+      transition: height .25s ease;
+    }
+    .site-header.is-scrolled .header-logo{
+      height: 48px;
+    }
+
+    .header-word{
+      font-size: 1.5rem;
+      line-height: 1;
+      transition: font-size .25s ease;
+    }
+    .site-header.is-scrolled .header-word{
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: 768px){
+      .header-logo{ height: 84px; }
+      .site-header.is-scrolled .header-logo{ height: 56px; }
+
+      .header-word{ font-size: 1.75rem; }
+      .site-header.is-scrolled .header-word{ font-size: 1.5rem; }
+    }
+  </style>
+</header>

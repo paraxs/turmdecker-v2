@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+
+// Hero-Hintergrund (wie bei den anderen Seiten)
+import heroImage from "../assets/scraped/hero-bg.jpg";
+
+// Eigene Bilder für die Blei-Brunnenwannen
+import imgBrunnen1 from "../assets/blei-brunnenwanne/blei-brunnenwanne01.jpg";
+import imgBrunnen2 from "../assets/blei-brunnenwanne/blei-brunnenwanne02.jpg";
+import imgBrunnen3 from "../assets/blei-brunnenwanne/blei-brunnenwanne03.jpg";
+---
+
+<Layout
+  title="Blei-Brunnenwanne | Turmdecker (Kofler e.U.)"
+  description="Passgenaue Blei-Brunnenwannen für historische Dorfbrunnen und Wasseranlagen – Blei in Blei verschweißt, dauerhaft wasserdicht und wirtschaftlich sinnvoll."
+>
+  <Header slot="header" />
+
+  <!-- HERO wie bei ARBEITEN MIT BLEI -->
+  <section class="relative h-[55vh] flex items-center bg-dark-900 text-white overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <Image
+        src={heroImage}
+        alt=""
+        class="object-cover w-full h-full opacity-55"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10 mt-14 md:mt-16">
+      <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">
+        Historische Brunnen &amp; Wasseranlagen
+      </p>
+      <h1 class="text-4xl md:text-6xl font-bold mt-4">
+        BLEI-<span class="text-primary">BRUNNENWANNE</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
+        Wenn ein Dorfbrunnen Wasser verliert, wird es teuer. Eine passgenaue Bleiwanne
+        stoppt den Verlust – dauerhaft, reparierbar und dokumentierbar.
+      </p>
+    </div>
+  </section>
+
+  <!-- TEXTBLOCK -->
+  <section class="py-14 md:py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-6">
+        Worum es bei Blei-Brunnenwannen geht
+      </h2>
+
+      <p class="text-gray-700 leading-relaxed mb-4">
+        In vielen historischen Dorfbrunnen geht mehr Wasser verloren, als man merkt – durch Risse,
+        undichte Betonwannen oder gescheiterte Beschichtungen. Jeder Liter, der im Untergrund
+        verschwindet, kostet die Gemeinde auf Dauer bares Geld.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Wir fertigen passgenaue Brunnenwannen aus Blei, <strong>Blei in Blei voll verschweißt</strong>.
+        Keine Beschichtung, die nach wenigen Jahren wieder abblättert, sondern eine massive,
+        handwerklich hergestellte Wanne, die sich an den Bestand anpasst.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed">
+        Da kein Wasser mehr versickert, amortisiert sich die Investition oft in wenigen Jahren –
+        vor allem bei größeren Becken und ganzjährig laufenden Anlagen.
+      </p>
+    </div>
+  </section>
+
+  <!-- BILD-SEKTION MIT ZWEI FOTOS -->
+  <section class="py-12 md:py-14 bg-gray-50 border-y border-gray-200">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-4">
+        Beispiele aus der Praxis
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-8">
+        Bilder sagen mehr als Worte: Hier siehst du typische Situationen – vom Rohbecken bis zur
+        fertigen, verschweißten Bleiwannen-Auskleidung.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <figure class="overflow-hidden rounded-sm shadow-sm bg-white">
+          <Image
+            src={imgBrunnen1}
+            alt="Einpassen einer Blei-Brunnenwanne in einen historischen Dorfbrunnen"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-64 md:h-80 object-cover"
+          />
+          <figcaption class="px-4 py-3 text-sm text-gray-600">
+            Passgenaues Einpassen der Bleiwanne in den vorhandenen Brunnenkörper.
+          </figcaption>
+        </figure>
+
+        <figure class="overflow-hidden rounded-sm shadow-sm bg-white">
+          <Image
+            src={imgBrunnen2}
+            alt="Fertig verschweißte Blei-Brunnenwanne, bereit zur Wiederbefüllung"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-64 md:h-80 object-cover"
+          />
+          <figcaption class="px-4 py-3 text-sm text-gray-600">
+            Voll verschweißte Bleiwanne – alle Stöße Blei in Blei, dauerhaft dicht und wartungsarm.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+    <section class="py-20 bg-primary text-white text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">
+        Brunnen verliert Wasser?
+      </h2>
+      <a
+        href="/kontakt"
+        class="inline-block bg-white text-primary hover:bg-dark-900 hover:text-white px-10 py-4 font-bold rounded transition-all shadow-xl"
+      >
+        Kontakt aufnehmen
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
