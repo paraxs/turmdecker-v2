@@ -5,6 +5,7 @@ import logo from "../assets/brand/kofler-logo.png";
 const pathname = Astro.url.pathname;
 const isHome = pathname === "/" || pathname === "";
 const isKontakt = pathname.startsWith("/kontakt");
+const isFaq = pathname.startsWith("/faq");
 
 const linkBase =
   "px-1 py-2 rounded-sm transition-colors hover:text-primary " +
@@ -34,11 +35,37 @@ const linkBase =
     </a>
 
     <div class="flex items-center gap-4">
-      <nav class="hidden md:flex gap-8 font-medium">
-        <a href="/" class={linkBase + " " + (isHome ? "text-primary" : "text-white/90")}>Startseite</a>
-        <a href="/#rubriken" class={linkBase + " text-white/90"}>Leistungen</a>
-        <a href="/kontakt" class={linkBase + " " + (isKontakt ? "text-primary" : "text-white/90")}>Kontakt</a>
-      </nav>
+  <nav class="hidden md:flex gap-8 font-medium">
+    <a
+      href="/"
+      class={linkBase + " " + (isHome ? "text-primary" : "text-white/90")}
+    >
+      Startseite
+    </a>
+
+    <a
+      href="/#rubriken"
+      class={linkBase + " text-white/90"}
+    >
+      Leistungen
+    </a>
+
+    <a
+      href="/faq"
+      class={linkBase + " " + (isFaq ? "text-primary" : "text-white/90")}
+    >
+      FAQ
+    </a>
+
+    <a
+      href="/kontakt"
+      class={linkBase + " " + (isKontakt ? "text-primary" : "text-white/90")}
+    >
+      Kontakt
+    </a>
+  </nav>
+</div>
+
 
       <!-- Mobile Menü ohne JS -->
       <details class="md:hidden relative">
