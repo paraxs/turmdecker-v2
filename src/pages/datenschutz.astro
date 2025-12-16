@@ -5,8 +5,8 @@ import Footer from "../components/Footer.astro";
 ---
 
 <Layout
-  title="Datenschutzerklärung | Turmdecker (Kofler e.U.)"
-  description="Informationen zum Datenschutz und zur Verarbeitung personenbezogener Daten bei Turmdecker (Kofler e.U.)."
+  title="Datenschutzerklärung | Kofler e.U."
+  description="Informationen zum Datenschutz und zur Verarbeitung personenbezogener Daten bei Kofler e.U.."
 >
   <Header slot="header" />
 
@@ -19,96 +19,165 @@ import Footer from "../components/Footer.astro";
 
         <p class="text-sm text-gray-500 mb-8">
           Diese Datenschutzerklärung informiert darüber, wie wir personenbezogene Daten auf dieser Website verarbeiten.
+          Sie richtet sich nach der Datenschutz-Grundverordnung (DSGVO) und dem österreichischen Datenschutzrecht.
         </p>
 
         <div class="space-y-8 text-sm md:text-base leading-relaxed text-gray-800">
 
+          <!-- 1. Verantwortlicher -->
           <section>
             <h2 class="font-semibold text-lg mb-2">1. Verantwortlicher</h2>
             <p>
               Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
-              <span class="font-semibold">Turmdecker (Kofler e.U.)</span><br />
+              <span class="font-semibold">Kofler e.U.</span><br />
               Peggetzstraße 20<br />
               9900 Lienz, Osttirol<br />
-              Österreich<br />
-              E-Mail: <a href="mailto:office@turmdecker.com" class="text-primary hover:underline">office@turmdecker.com</a><br />
-              Telefon: <a href="tel:+436644328298" class="text-primary hover:underline">+43 664 4328298</a>
-            </p>
-          </section>
-
-          <section>
-            <h2 class="font-semibold text-lg mb-2">2. Aufruf der Website / Server-Logs</h2>
-            <p>
-              Beim Aufruf dieser Website werden automatisch bestimmte technische Informationen erfasst und in sogenannten
-              Server-Logfiles gespeichert (z.&nbsp;B. IP-Adresse, Datum und Uhrzeit des Abrufs, verwendeter Browser,
-              aufgerufene Seite). Diese Daten sind technisch erforderlich, um die Website bereitzustellen und die Sicherheit
-              des Systems zu gewährleisten.
+              Österreich
             </p>
             <p class="mt-2">
-              Rechtsgrundlage ist unser berechtigtes Interesse gemäß Art. 6 Abs. 1 lit. f DSGVO an der sicheren und
-              stabilen Bereitstellung dieser Website. Eine Zusammenführung dieser Daten mit anderen Datenquellen oder
-              eine personenbezogene Auswertung findet nicht statt.
+              E-Mail:
+              <a href="mailto:office@turmdecker.com" class="text-primary hover:underline">
+                office@turmdecker.com
+              </a><br />
+              Telefon:
+              <a href="tel:+436644328298" class="text-primary hover:underline">
+                +43 664 4328298
+              </a>
             </p>
           </section>
 
+          <!-- 2. Hosting & Server-Logs -->
           <section>
-            <h2 class="font-semibold text-lg mb-2">3. Kontaktaufnahme</h2>
+            <h2 class="font-semibold text-lg mb-2">2. Hosting &amp; Server-Logfiles</h2>
             <p>
-              Wenn Sie per E-Mail oder über ein Kontaktformular mit uns Kontakt aufnehmen, werden die von Ihnen
-              übermittelten Daten (z.&nbsp;B. Name, Kontaktdaten, Inhalt der Anfrage) zur Bearbeitung der Anfrage
-              und für den Fall von Anschlussfragen gespeichert.
+              Unsere Website wird über einen externen Dienstleister (Hosting-Provider) bereitgestellt. Beim Aufruf der
+              Website werden durch Ihren Browser automatisch bestimmte Informationen an den Server übermittelt und in
+              sogenannten Server-Logfiles gespeichert. Dazu gehören insbesondere:
+            </p>
+            <ul class="list-disc list-inside mt-2 space-y-1">
+              <li>IP-Adresse des anfragenden Geräts</li>
+              <li>Datum und Uhrzeit des Zugriffs</li>
+              <li>aufgerufene Seiten und Dateien</li>
+              <li>übertragene Datenmenge</li>
+              <li>verwendeter Browser und Betriebssystem</li>
+              <li>Referrer-URL (Website, von der der Zugriff erfolgt)</li>
+            </ul>
+            <p class="mt-2">
+              Diese Daten sind technisch erforderlich, um unsere Website sicher und stabil bereitzustellen, Angriffe
+              erkennen und nachverfolgen zu können und die Systemstabilität zu gewährleisten.
             </p>
             <p class="mt-2">
-              Rechtsgrundlage ist je nach Art der Anfrage Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen bzw.
-              Vertragserfüllung) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer ordnungsgemäßen
-              Beantwortung von Anfragen). Wir bewahren diese Daten nur so lange auf, wie dies zur Bearbeitung und
-              Dokumentation der Anfrage erforderlich ist.
+              Rechtsgrundlage ist unser berechtigtes Interesse gemäß Art. 6 Abs. 1 lit. f DSGVO an der sicheren,
+              stabilen und effizienten Bereitstellung dieser Website. Eine personenbezogene Auswertung findet nicht statt.
+              Logfiles werden in der Regel nach einer angemessenen Frist automatisch gelöscht.
             </p>
           </section>
 
+          <!-- 3. Kontaktaufnahme (E-Mail, Telefon, Kontaktformular) -->
           <section>
-            <h2 class="font-semibold text-lg mb-2">4. Cookies</h2>
+            <h2 class="font-semibold text-lg mb-2">3. Kontaktaufnahme (E-Mail, Telefon, Kontaktformular)</h2>
             <p>
-              Unsere Website verwendet Cookies, um bestimmte Funktionen zu ermöglichen und die Nutzung zu erleichtern.
-              Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden.
+              Wenn Sie per E-Mail, telefonisch oder über ein Kontaktformular auf der Website mit uns Kontakt aufnehmen,
+              verarbeiten wir die von Ihnen übermittelten Daten (z.&nbsp;B. Name, Kontaktdaten, Inhalt der Anfrage), um
+              Ihr Anliegen zu bearbeiten und etwaige Anschlussfragen zu klären.
             </p>
             <p class="mt-2">
-              Wir setzen derzeit ausschließlich technisch notwendige bzw. funktionale Cookies ein, die für den Betrieb
-              der Website erforderlich sind (z.&nbsp;B. zur Darstellung von Inhalten oder zur Speicherung von
-              Seiteneinstellungen). Diese Cookies verarbeiten in der Regel keine personenbezogenen Daten oder nur in
-              pseudonymisierter Form.
+              Rechtsgrundlage ist je nach Art der Anfrage
+              <span class="whitespace-nowrap">Art. 6 Abs. 1 lit. b DSGVO</span>
+              (vorvertragliche Maßnahmen bzw. Vertragserfüllung, z.&nbsp;B. Angebotsanfragen) oder
+              <span class="whitespace-nowrap">Art. 6 Abs. 1 lit. f DSGVO</span>
+              (berechtigtes Interesse an der sachgerechten Bearbeitung von Anfragen).
             </p>
             <p class="mt-2">
-              Rechtsgrundlage ist unser berechtigtes Interesse gemäß Art. 6 Abs. 1 lit. f DSGVO an einer technisch
-              funktionsfähigen und nutzerfreundlichen Website.
+              Wir speichern diese Daten nur so lange, wie dies zur Bearbeitung Ihres Anliegens und zur Dokumentation
+              im Rahmen von gesetzlichen Aufbewahrungspflichten erforderlich ist.
+            </p>
+          </section>
+
+          <!-- 4. Kontakt per WhatsApp -->
+          <section>
+            <h2 class="font-semibold text-lg mb-2">4. Kontakt über WhatsApp</h2>
+            <p>
+              Auf unserer Website bieten wir die Möglichkeit, über einen WhatsApp-Link direkt Kontakt mit uns aufzunehmen.
+              Anbieter von WhatsApp ist die WhatsApp Ireland Limited (für Nutzer im europäischen Raum). Bei Nutzung dieses
+              Dienstes werden Ihre Kommunikationsdaten (z.&nbsp;B. Telefonnummer, Profilinformationen, Nachrichteninhalte)
+              an WhatsApp übermittelt und dort gemäß den Nutzungsbedingungen und Datenschutzrichtlinien von WhatsApp
+              verarbeitet.
             </p>
             <p class="mt-2">
-              Sie können Cookies in den Einstellungen Ihres Browsers jederzeit löschen oder deren Speicherung verhindern.
-              In diesem Fall können möglicherweise nicht alle Funktionen der Website vollumfänglich genutzt werden.
+              Die Kontaktaufnahme über WhatsApp erfolgt freiwillig. Alternativ können Sie uns jederzeit per E-Mail oder
+              Telefon kontaktieren. Rechtsgrundlage für die Verarbeitung im Rahmen der Kommunikation ist
+              <span class="whitespace-nowrap">Art. 6 Abs. 1 lit. b DSGVO</span> (vorvertragliche Maßnahmen bzw.
+              Vertragserfüllung) oder <span class="whitespace-nowrap">Art. 6 Abs. 1 lit. f DSGVO</span>
+              (berechtigtes Interesse an einer schnellen und praxisnahen Kommunikation).
+            </p>
+            <p class="mt-2">
+              Bitte beachten Sie, dass bei der Nutzung von WhatsApp Daten auch an Systeme außerhalb der EU übertragen
+              werden können. Auf Umfang und Dauer der Datenverarbeitung durch WhatsApp haben wir keinen Einfluss.
             </p>
           </section>
 
+          <!-- 5. Cookies -->
           <section>
-            <h2 class="font-semibold text-lg mb-2">5. Webanalyse- und Marketing-Tools</h2>
+            <h2 class="font-semibold text-lg mb-2">5. Cookies</h2>
             <p>
-              Derzeit setzen wir keine Webanalyse-Tools wie Google Analytics und keine externen Marketing- oder
-              Tracking-Dienste ein, die ein Profiling von Besuchern über verschiedene Websites hinweg ermöglichen.
+              Unsere Website setzt nach aktuellem Stand entweder keine oder ausschließlich technisch notwendige bzw.
+              funktionale Cookies ein, die für den Betrieb der Website erforderlich sind (z.&nbsp;B. zur sicheren
+              Bereitstellung von Inhalten oder zur Anpassung der Darstellung).
+            </p>
+            <p class="mt-2">
+              Diese Cookies verarbeiten in der Regel keine personenbezogenen Daten oder nur in pseudonymisierter Form
+              und dienen nicht zu Werbe- oder Trackingzwecken. Rechtsgrundlage ist unser berechtigtes Interesse gemäß
+              Art. 6 Abs. 1 lit. f DSGVO an einer technisch funktionsfähigen und nutzerfreundlichen Website.
+            </p>
+            <p class="mt-2">
+              Sie können in den Einstellungen Ihres Browsers die Speicherung von Cookies einschränken oder löschen.
+              In diesem Fall können gegebenenfalls nicht alle Funktionen der Website vollumfänglich genutzt werden.
             </p>
           </section>
 
+          <!-- 6. Webanalyse- und Marketing-Tools -->
           <section>
-            <h2 class="font-semibold text-lg mb-2">6. Speicherdauer</h2>
+            <h2 class="font-semibold text-lg mb-2">6. Webanalyse- und Marketing-Tools</h2>
             <p>
-              Wir verarbeiten personenbezogene Daten nur so lange, wie dies für die jeweiligen Zwecke notwendig ist
-              und keine längeren gesetzlichen Aufbewahrungspflichten bestehen. Nach Wegfall des Zwecks bzw. Ablauf
-              gesetzlicher Fristen werden die Daten gelöscht oder anonymisiert.
+              Derzeit setzen wir auf dieser Website keine Webanalyse-Tools (z.&nbsp;B. Google Analytics) und keine
+              externen Marketing- oder Tracking-Dienste ein, die ein Nutzerprofil erstellen oder Ihr Verhalten über
+              mehrere Websites hinweg verfolgen.
             </p>
           </section>
 
+          <!-- 7. Speicherdauer -->
           <section>
-            <h2 class="font-semibold text-lg mb-2">7. Ihre Rechte (Betroffenenrechte)</h2>
+            <h2 class="font-semibold text-lg mb-2">7. Speicherdauer</h2>
             <p>
-              Ihnen stehen gemäß DSGVO folgende Rechte zu:
+              Wir verarbeiten personenbezogene Daten nur so lange, wie dies für die jeweiligen Zwecke notwendig ist und
+              keine längeren gesetzlichen Aufbewahrungspflichten bestehen (z.&nbsp;B. handels- und steuerrechtliche
+              Aufbewahrungsfristen). Nach Wegfall des Zwecks bzw. Ablauf gesetzlicher Fristen werden die Daten gelöscht
+              oder anonymisiert.
+            </p>
+          </section>
+
+          <!-- 8. Datenübermittlung in Drittländer -->
+          <section>
+            <h2 class="font-semibold text-lg mb-2">8. Datenübermittlung in Drittländer</h2>
+            <p>
+              Im Rahmen der Nutzung dieser Website kann es im Einzelfall zu einer Übermittlung personenbezogener Daten
+              in sogenannte Drittländer (außerhalb der EU/des EWR) kommen, insbesondere im Zusammenhang mit Hosting-,
+              Content-Delivery- oder Kommunikationsdiensten (z.&nbsp;B. WhatsApp).
+            </p>
+            <p class="mt-2">
+              Eine solche Übermittlung erfolgt nur, wenn die besonderen Voraussetzungen der Art. 44 ff. DSGVO erfüllt
+              sind (z.&nbsp;B. Angemessenheitsbeschluss der EU-Kommission oder geeignete Garantien wie
+              Standardvertragsklauseln). Weitere Details zu konkreten Dienstleistern können Sie gerne direkt bei uns
+              erfragen.
+            </p>
+          </section>
+
+          <!-- 9. Ihre Rechte (Betroffenenrechte) -->
+          <section>
+            <h2 class="font-semibold text-lg mb-2">9. Ihre Rechte (Betroffenenrechte)</h2>
+            <p>
+              Ihnen stehen gemäß DSGVO folgende Rechte in Bezug auf Ihre personenbezogenen Daten zu:
             </p>
             <ul class="list-disc list-inside mt-2 space-y-1">
               <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
@@ -123,17 +192,23 @@ import Footer from "../components/Footer.astro";
               Zur Ausübung dieser Rechte können Sie sich jederzeit unter den oben angegebenen Kontaktdaten an uns wenden.
             </p>
             <p class="mt-2">
-              Außerdem haben Sie das Recht, sich bei der zuständigen Datenschutzbehörde zu beschweren, wenn Sie der Ansicht
+              Zudem haben Sie das Recht, sich bei der zuständigen Datenschutzbehörde zu beschweren, wenn Sie der Ansicht
               sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen datenschutzrechtliche Bestimmungen verstößt.
+              In Österreich ist dies in der Regel die Datenschutzbehörde.
             </p>
           </section>
 
+          <!-- 10. Änderungen dieser Datenschutzerklärung -->
           <section>
-            <h2 class="font-semibold text-lg mb-2">8. Änderungen dieser Datenschutzerklärung</h2>
+            <h2 class="font-semibold text-lg mb-2">10. Änderungen dieser Datenschutzerklärung</h2>
             <p>
               Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf zu aktualisieren, um sie an geänderte
               rechtliche Rahmenbedingungen oder technische Entwicklungen anzupassen. Es gilt jeweils die auf dieser
               Website veröffentlichte aktuelle Version.
+            </p>
+            <p class="mt-2 text-xs text-gray-500">
+              Hinweis: Diese Informationen stellen keine Rechtsberatung dar und können eine individuelle rechtliche
+              Prüfung im Einzelfall nicht ersetzen.
             </p>
           </section>
 
