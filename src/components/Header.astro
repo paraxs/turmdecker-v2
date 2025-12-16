@@ -67,14 +67,44 @@ const linkBase =
 </div>
 
 
-      <!-- Mobile Menü ohne JS -->
+            <!-- Mobile Menü ohne JS -->
       <details class="md:hidden relative">
         <summary class={"cursor-pointer select-none text-white/90 " + linkBase}>Menü</summary>
 
         <div class="absolute right-0 mt-3 w-64 rounded-md border border-white/10 bg-black/80 backdrop-blur-sm shadow-xl overflow-hidden">
-          <a href="/" class={"block px-4 py-3 text-white/90 hover:bg-white/10 " + (isHome ? "text-primary" : "")}>Startseite</a>
-          <a href="/#rubriken" class="block px-4 py-3 text-white/90 hover:bg-white/10">Leistungen</a>
-          <a href="/kontakt" class={"block px-4 py-3 text-white/90 hover:bg-white/10 " + (isKontakt ? "text-primary" : "")}>Kontakt</a>
+          <a
+            href="/"
+            class={"block px-4 py-3 text-white/90 hover:bg-white/10 " + (isHome ? "text-primary" : "")}
+          >
+            Startseite
+          </a>
+
+          <a
+            href="/#rubriken"
+            class="block px-4 py-3 text-white/90 hover:bg-white/10"
+          >
+            Leistungen
+          </a>
+
+          <a
+            href="/faq"
+            class={
+              "block px-4 py-3 text-white/90 hover:bg-white/10 " +
+              (isFaq ? "text-primary" : "")
+            }
+          >
+            FAQ
+          </a>
+
+          <a
+            href="/kontakt"
+            class={
+              "block px-4 py-3 text-white/90 hover:bg-white/10 " +
+              (isKontakt ? "text-primary" : "")
+            }
+          >
+            Kontakt
+          </a>
         </div>
       </details>
     </div>
