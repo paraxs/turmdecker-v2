@@ -1,0 +1,119 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import ContentSection from "../components/ContentSection.astro";
+
+// BILDER IMPORTIEREN – Pfade an deine echten Dateien anpassen
+import imgLs01 from "../assets/laerchenschindel/laerchenschindel04.webp";
+import imgLs02 from "../assets/laerchenschindel/laerchenschindel02.webp";
+import imgLs03 from "../assets/laerchenschindel/laerchenschindel03.webp";
+---
+
+<Layout
+  title="Lärchenschindel-Dächer | Turmdecker (Kofler e.U.)"
+  description="Lärchenschindel-Dächer im Alpenraum: handgespaltene Lärchenschindeln, fachgerechte Verlegung und gerüstfreie Sanierung an Kirchtürmen, Dächern und Fassaden."
+>
+  <Header slot="header" />
+
+  <!-- HERO: exakt gleiches Setup wie bei Eindeckungen -->
+  <Hero
+    images={[imgLs01, imgLs02, imgLs03]}
+    heightClass="h-[55vh]"
+    contentClass="pt-24 md:pt-28"
+    overlayClass="bg-black/45"
+    storageKey="tdHero:laerchenschindel"
+  >
+    <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">
+      Holzschindel im Alpenraum
+    </p>
+
+    <h1 class="text-4xl md:text-6xl font-bold mt-4">
+      LÄRCHENSCHINDEL<span class="text-primary">.</span>
+    </h1>
+
+    <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
+      Handgespaltene Lärchenschindeln, fachgerecht verlegt – auf Kirchtürmen,
+      Dächern und Fassaden. Gerüstfrei am Seil, dokumentiert für Planung
+      und Denkmalpflege.
+    </p>
+  </Hero>
+
+  <!-- SECTION 1 -->
+  <ContentSection
+    title="Aufbau & Lebensdauer"
+    image={imgLs01}
+    alt="Dach mit Lärchenschindeln"
+  >
+    <p>
+      Lärchenschindeln sind im Alpenraum seit Jahrhunderten bewährt.
+      Entscheidend sind Holzqualität, richtige Spaltung und ausreichend
+      Deckung – dann sind mehrere Jahrzehnte Nutzungsdauer realistisch.
+    </p>
+    <ul class="list-disc pl-5 mt-4 space-y-2">
+      <li>Handgespaltene Lärche mit stehenden Jahresringen</li>
+      <li>2- oder 3-fach Deckung je nach Dachneigung und Exposition</li>
+      <li>Unterkonstruktion als dicht gestoßene Bretterschalung</li>
+    </ul>
+  </ContentSection>
+
+  <!-- SECTION 2 -->
+  <ContentSection
+    title="Kosten & Wirtschaftlichkeit"
+    image={imgLs02}
+    alt="Detailansicht Lärchenschindel"
+    reverse={true}
+  >
+    <p>
+      Die Kosten pro Quadratmeter hängen von Dachform, Höhenlage und
+      gewünschter Ausführung ab. Entscheidend ist, dass Konstruktion und
+      Deckung so gewählt werden, dass die Schindeln ihre volle Lebensdauer
+      erreichen.
+    </p>
+    <p class="mt-4">
+      Durch gerüstfreie Ausführung am Seil können wir vor allem bei
+      Sanierungen bestehender Dächer Gerüst- und Nebenkosten deutlich
+      reduzieren.
+    </p>
+  </ContentSection>
+
+  <!-- SECTION 3 -->
+  <ContentSection
+    title="Sanierung im Bestand"
+    image={imgLs03}
+    alt="Sanierung eines Holzschindeldachs"
+  >
+    <p>
+      Viele Schindeldächer wurden in Etappen repariert und sind heute
+      uneinheitlich. Wir beurteilen den Bestand, entfernen schadhaftes
+      Material und erneuern in abgestimmten Abschnitten – auch an
+      schwer zugänglichen Kirchtürmen.
+    </p>
+    <p class="mt-4">
+      Auf Wunsch dokumentieren wir den Zustand vor und nach der Sanierung
+      fotografisch oder mittels Digitalem Zwilling.
+    </p>
+  </ContentSection>
+
+  <!-- CTA-BLOCK: identischer Stil wie bei Eindeckungen -->
+  <section class="bg-primary text-white py-16 text-center">
+    <div class="container mx-auto px-4">
+      <h3 class="text-2xl font-bold mb-4">
+        Projekt mit Lärchenschindeln geplant?
+      </h3>
+      <p class="mb-8 opacity-90">
+        Wir unterstützen bei Bestandsaufnahme, Planung und Ausführung –
+        vom Bretterdach bis zur letzten Schindel.
+      </p>
+      <a
+        href="/kontakt"
+        class="bg-white text-primary px-8 py-3 font-bold rounded hover:bg-dark-900 hover:text-white transition-colors"
+      >
+        Kontakt aufnehmen
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
