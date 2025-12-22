@@ -51,6 +51,64 @@ const desc = description ?? "Turmdecker - Gerüstfreies Kirchturmdecken";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <slot name="head" />
+	
+	    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "RoofingContractor",
+        "name": "Turmdecker – Kofler e.U.",
+        "url": "https://www.turmdecker.com",
+        "logo": "https://www.turmdecker.com/favicon.svg",
+        "image": "https://turmdecker.com/_astro/hero-bg-3.C9EQ1703.webp", // oder ein passendes Hero-Bild von dir
+        "description": "Gerüstfreies Kirchturmdecken und Spezialarbeiten am Seil mit Lärchenschindeln, Kupfer und Schiefer aus Osttirol.",
+        "telephone": "+43 664 4328298",
+        "email": "office@turmdecker.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Peggetzstraße 20",
+          "postalCode": "9900",
+          "addressLocality": "Lienz",
+          "addressRegion": "Osttirol",
+          "addressCountry": "AT"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Franz Kofler"
+        },
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Osttirol"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 46.82324,      // wenn du willst, echte Koordinaten nachtragen
+          "longitude": 12.79426
+        },
+        "sameAs": [
+          // hier kannst du später Social-Links ergänzen, z.B.:
+          // "https://www.instagram.com/deinprofil"
+        ]
+      })}
+    </script>
+	
+	    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Turmdecker",
+        "url": "https://www.turmdecker.com",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Kofler e.U."
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.turmdecker.com/suche?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      })}
+    </script>
+	
   </head>
 
   <body class="bg-white text-gray-900 font-sans">
