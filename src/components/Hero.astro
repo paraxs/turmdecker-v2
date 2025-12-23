@@ -47,7 +47,7 @@
       style={fallback ? `background-image:url('${fallback}')` : undefined}
     ></div>
 
-    <div class="hero-fade absolute inset-0 bg-cover bg-center opacity-0"></div>
+    <div class={`hero-fade absolute inset-0 bg-cover ${bgPositionClass} opacity-0`}></div>
 
     <div class={`absolute inset-0 ${overlayClass}`}></div>
     <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
@@ -83,10 +83,6 @@
       window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 	const isMobile = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
 	  if (isMobile) return;  
-
-    // OPTIONAL (empfohlen): auf Mobile KEINE Rotation, damit nicht unnötig große Hero-Bilder nachgeladen werden
-    const isMobile = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
-    if (isMobile) return;
 
     const run = () => {
       // Test: ?hero=2 erzwingt Bild 2
