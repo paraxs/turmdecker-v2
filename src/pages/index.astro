@@ -27,14 +27,25 @@ import imgDrohne2 from "../assets/photogrammetrie-digitaler-zwilling/photogramme
 
 import imgBleiBrunnen1 from '../assets/blei-brunnenwanne/blei-brunnenwanne01.webp';
 import imgBleiBrunnen2 from '../assets/blei-brunnenwanne/blei-brunnenwanne02.webp';
+import hero1m from "../assets/scraped/hero-bg-mobile.webp";
 ---
 
 
 <Layout title="Gerüstfreies Kirchturmdecken | Kofler e.U.">
-  <Header slot="header" />
+	<link
+	  slot="head"
+	  rel="preload"
+	  as="image"
+	  href={hero1.src}
+	  type="image/webp"
+	/>
+	<link slot="head" rel="preload" as="image" href={hero1m.src} type="image/webp" media="(max-width: 768px)" />
+	<link slot="head" rel="preload" as="image" href={hero1.src}  type="image/webp" media="(min-width: 769px)" />
+
 
     <Hero
 		images={[hero1, hero2, hero3, hero4]}
+		mobileFallback={hero1m}
 		heightClass="h-[75vh] md:h-[85vh]"
 		contentClass="pt-24 md:pt-28"
 		overlayClass="bg-black/35"
@@ -56,7 +67,32 @@ import imgBleiBrunnen2 from '../assets/blei-brunnenwanne/blei-brunnenwanne02.web
   >Lärchenschindeln</a>, Kupfer und Schiefer.<br class="hidden md:block" />
   So sparen Sie Gerüstkosten und Eingriffe in den laufenden Betrieb.<br class="hidden md:block" />
   Digitale Zwillinge machen Aufwand und Kosten vorab transparent planbar.
-</p> 
+</p>
+ <!-- CTA: primär + sekundär (Above the Fold) -->
+<div class="mt-7 flex flex-col sm:flex-row gap-3 sm:items-center">
+  <!-- Primary -->
+  <a
+    href="/kontakt"
+    class="inline-flex w-full sm:w-auto justify-center items-center rounded-md bg-primary px-6 py-1 text-base font-semibold text-white shadow-lg shadow-black/20
+           hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
+           transition-colors"
+  >
+    Unverbindlich anfragen
+  </a>
+
+  <!-- Secondary -->
+  <a
+    href="#rubriken"
+    class="inline-flex w-full sm:w-auto justify-center items-center rounded-md px-6 py-3 text-base font-semibold text-white/90
+           hover:text-white hover:bg-white/10
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
+           transition-colors"
+  >
+    Leistungen ansehen
+    <span aria-hidden="true" class="ml-2">→</span>
+  </a>
+</div>
+
 
     </div>
   </Hero>

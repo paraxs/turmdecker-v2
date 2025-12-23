@@ -1,18 +1,40 @@
 ---
 import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
   description?: string;
   noindex?: boolean;
-  ogImage?: string; // optional: z.B. "/og.jpg"
+  ogImage?: string;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
+  hideWhatsApp?: boolean;
 }
 
-const { title, description, noindex, ogImage } = Astro.props as Props;
+const {
+  title,
+  description,
+  noindex,
+  ogImage,
+  hideHeader = false,
+  hideFooter = false,
+  hideWhatsApp = false
+} = Astro.props as Props;
 
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : null;
 const desc = description ?? "Turmdecker - Gerüstfreies Kirchturmdecken";
+
+const hasHeaderSlot = Astro.slots.has("header");
+const hasFooterSlot = Astro.slots.has("footer");
+
+// optional: Standardbild für strukturierte Daten (ohne kaputte Quotes/Kommentare)
+const structuredImage = Astro.site
+  ? new URL("/hero/hero-03.webp", Astro.site).href
+  : "/hero/hero-03.webp";
 ---
+
 
 <!doctype html>
 <html lang="de" class="scroll-smooth">
@@ -52,91 +74,61 @@ const desc = description ?? "Turmdecker - Gerüstfreies Kirchturmdecken";
 
     <slot name="head" />
 	
-	    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "RoofingContractor",
-        "name": "Turmdecker – Kofler e.U.",
-        "url": "https://www.turmdecker.com",
-        "logo": "https://www.turmdecker.com/favicon.svg",
-        ""image": "https://www.turmdecker.com/hero/hero-01.webp", // oder ein passendes Hero-Bild von dir
-        "description": "Gerüstfreies Kirchturmdecken und Spezialarbeiten am Seil mit Lärchenschindeln, Kupfer und Schiefer aus Osttirol.",
-        "telephone": "+43 664 4328298",
-        "email": "office@turmdecker.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Peggetzstraße 20",
-          "postalCode": "9900",
-          "addressLocality": "Lienz",
-          "addressRegion": "Osttirol",
-          "addressCountry": "AT"
-        },
-        "founder": {
-          "@type": "Person",
-          "name": "Franz Kofler"
-        },
-        "areaServed": {
-          "@type": "AdministrativeArea",
-          "name": "Osttirol"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 46.82324,      // wenn du willst, echte Koordinaten nachtragen
-          "longitude": 12.79426
-        },
-        "sameAs": [
-          // hier kannst du später Social-Links ergänzen, z.B.:
-          // "https://www.instagram.com/deinprofil"
-        ]
-      })}
-    </script>
+	<script type="application/ld+json">
+	  {JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "RoofingContractor",
+		"name": "Turmdecker – Kofler e.U.",
+		"url": "https://www.turmdecker.com",
+		"logo": "https://www.turmdecker.com/favicon.svg",
+		"image": structuredImage,
+		"description": "Gerüstfreies Kirchturmdecken und Spezialarbeiten am Seil mit Lärchenschindeln, Kupfer und Schiefer aus Osttirol.",
+		"telephone": "+43 664 4328298",
+		"email": "office@turmdecker.com",
+		"address": {
+		  "@type": "PostalAddress",
+		  "streetAddress": "Peggetzstraße 20",
+		  "postalCode": "9900",
+		  "addressLocality": "Lienz",
+		  "addressRegion": "Osttirol",
+		  "addressCountry": "AT"
+		},
+		"founder": { "@type": "Person", "name": "Franz Kofler" },
+		"areaServed": { "@type": "AdministrativeArea", "name": "Osttirol" },
+		"sameAs": []
+	  })}
+	</script>
+
 	
 	    <script type="application/ld+json">
       {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Turmdecker",
-        "url": "https://www.turmdecker.com",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Kofler e.U."
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.turmdecker.com/suche?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+	  "@context": "https://schema.org",
+	  "@type": "WebSite",
+	  "name": "Turmdecker – Kofler e.U.",
+	  "url": "https://www.turmdecker.com"
+	}
       })}
     </script>
 	
   </head>
 
   <body class="bg-white text-gray-900 font-sans">
-    <slot name="header" />
-    <main><slot /></main>
-    <slot name="footer" />
-	<a
-  href="https://wa.me/436644328298?text=Guten%20Tag%2C%20ich%20habe%20eine%20Frage%20zu%20Ihren%20Leistungen."
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Kontakt über WhatsApp aufnehmen"
-  class="
-    fixed
-    z-40
-    bottom-4 right-4
-    md:bottom-6 md:right-6
-    flex items-center gap-2
-    px-4 py-2
-    rounded-full
-    bg-[#25D366]
-    text-white
-    shadow-lg
-    hover:shadow-xl
-    hover:bg-[#1ebe5d]
-    transition
-    text-sm md:text-base
-  "
->
+  {!hideHeader && (hasHeaderSlot ? <slot name="header" /> : <Header />)}
+
+  <main>
+    <slot />
+  </main>
+
+  {!hideFooter && (hasFooterSlot ? <slot name="footer" /> : <Footer />)}
+
+  {!hideWhatsApp && (
+    <a
+      href="https://wa.me/436644328298?text=Guten%20Tag%2C%20ich%20habe%20eine%20Frage%20zu%20Ihren%20Leistungen."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Kontakt über WhatsApp aufnehmen"
+      class="fixed z-40 bottom-4 right-4 md:bottom-6 md:right-6 flex items-center gap-2 px-4 py-2 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-xl hover:bg-[#1ebe5d] transition text-sm md:text-base"
+    >
   <!-- WhatsApp Icon (SVG) -->
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -155,6 +147,6 @@ const desc = description ?? "Turmdecker - Gerüstfreies Kirchturmdecken";
     WhatsApp
   </span>
 </a>
-
-  </body>
+  )}
+</body>
 </html>

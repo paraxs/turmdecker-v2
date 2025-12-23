@@ -1,31 +1,43 @@
----
-import type { ImageMetadata } from "astro";
+	---
+	import type { ImageMetadata } from "astro";
 
-interface Props {
-  images: ImageMetadata[];
-  heightClass?: string;   // z.B. "h-[85vh]" oder "h-[55vh]"
-  contentClass?: string;  // z.B. "pt-24 md:pt-28" oder "mt-14 md:mt-16"
-  overlayClass?: string;  // z.B. "bg-black/35"
-  storageKey?: string;    // z.B. "tdHero:index"
-  allowRepeat?: boolean;  // default false
-  bgPositionClass?: string; // NEU: z.B. "bg-center md:bg-[70%_center]"
-}
+	interface Props {
+	  images: ImageMetadata[];
+	  mobileFallback?: ImageMetadata; // NEU
+	  heightClass?: string;   // z.B. "h-[85vh]" oder "h-[55vh]"
+	  contentClass?: string;  // z.B. "pt-24 md:pt-28" oder "mt-14 md:mt-16"
+	  overlayClass?: string;  // z.B. "bg-black/35"
+	  storageKey?: string;    // z.B. "tdHero:index"
+	  allowRepeat?: boolean;  // default false
+	  bgPositionClass?: string; // NEU: z.B. "bg-center md:bg-[70%_center]"
+	}
 
-const {
-  images,
-  heightClass = "h-[55vh]",
-  contentClass = "mt-14 md:mt-16",
-  overlayClass = "bg-black/35",
-  storageKey = "tdHero",
-  allowRepeat = false,
-  bgPositionClass = "bg-center", // NEU: Default wie bisher
-} = Astro.props as Props;
+	const {
+	  images,
+	  mobileFallback,
+	  heightClass = "h-[55vh]",
+	  contentClass = "mt-14 md:mt-16",
+	  overlayClass = "bg-black/35",
+	  storageKey = "tdHero",
+	  allowRepeat = false,
+	  bgPositionClass = "bg-center", // NEU: Default wie bisher
+	} = Astro.props as Props;
 
-const srcs = (images ?? []).map((i) => i?.src).filter(Boolean) as string[];
-const fallback = srcs[0] ?? "";
----
+	const srcs = (images ?? []).map((i) => i?.src).filter(Boolean) as string[];
+	const fallback = srcs[0] ?? "";
+	const mobileFallbackSrc = mobileFallback?.src ?? "";
 
-<section class={`relative ${heightClass} flex items-center bg-dark-900 text-white overflow-hidden`}>
+	---
+		{mobileFallbackSrc && (
+	  <style>{`
+		@media (max-width: 768px){
+		  .hero-bg[data-hero-key="${storageKey}"]{
+			background-image:url('${mobileFallbackSrc}') !important;
+		  }
+		}
+	  `}</style>
+	)}
+	<section class={`relative ${heightClass} flex items-center bg-dark-900 text-white overflow-hidden`}>
   <div class="absolute inset-0 z-0">
     <div
       class={`hero-bg absolute inset-0 bg-cover ${bgPositionClass}`}
@@ -53,23 +65,30 @@ const fallback = srcs[0] ?? "";
   </style>
 
   <script is:inline>
-    (function () {
-      const root = document.currentScript && document.currentScript.closest("section");
-      if (!root) return;
+  (function () {
+    const root = document.currentScript && document.currentScript.closest("section");
+    if (!root) return;
 
-      const bg = root.querySelector(".hero-bg");
-      const fade = root.querySelector(".hero-fade");
-      if (!bg || !fade) return;
+    const bg = root.querySelector(".hero-bg");
+    const fade = root.querySelector(".hero-fade");
+    if (!bg || !fade) return;
 
-      const list = JSON.parse(bg.getAttribute("data-hero-images") || "[]");
-      const key = bg.getAttribute("data-hero-key") || "tdHero";
-      const allowRepeat = bg.getAttribute("data-hero-allow-repeat") === "1";
+    const list = JSON.parse(bg.getAttribute("data-hero-images") || "[]");
+    const key = bg.getAttribute("data-hero-key") || "tdHero";
+    const allowRepeat = bg.getAttribute("data-hero-allow-repeat") === "1";
 
-      if (!Array.isArray(list) || list.length === 0) return;
+    if (!Array.isArray(list) || list.length === 0) return;
 
-      const prefersReduced =
-        window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReduced =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	const isMobile = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+	  if (isMobile) return;  
 
+    // OPTIONAL (empfohlen): auf Mobile KEINE Rotation, damit nicht unnötig große Hero-Bilder nachgeladen werden
+    const isMobile = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) return;
+
+    const run = () => {
       // Test: ?hero=2 erzwingt Bild 2
       const qp = new URLSearchParams(location.search).get("hero");
       let idx;
@@ -110,6 +129,14 @@ const fallback = srcs[0] ?? "";
         }, 560);
       };
       img.src = url;
-    })();
-  </script>
+    };
+
+    // <<< HIER ist der "später starten" Teil >>>
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(run, { timeout: 1200 });
+    } else {
+      window.setTimeout(run, 300);
+    }
+  })();
+</script>
 </section>
