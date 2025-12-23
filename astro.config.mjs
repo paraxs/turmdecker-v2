@@ -4,10 +4,22 @@ import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
 
 export default defineConfig({
-  site: 'https://www.turmdecker.com', // Deine Domain (für SEO wichtig)
+  // WICHTIG: muss zur kanonischen Domain passen (www vs non-www)
+  site: 'turmdecker.com',
+
+  build: {
+    inlineStylesheets: 'auto',
+  },
+
+  vite: {
+    build: {
+      assetsInlineLimit: 10 * 1024, // 10 KB
+    },
+  },
+
   integrations: [
-    tailwind({ applyBaseStyles: false }), 
+    tailwind({ applyBaseStyles: false }),
     sitemap(),
-    compress()
+    compress(),
   ],
 });

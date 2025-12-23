@@ -42,17 +42,19 @@ const SIZES = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
             {slides.map((img, i) => (
               <div class="tdc-slide">
                 <Image
-                  src={img}
-                  alt={i === 0 ? altText : ""}
-                  width={900}
-                  height={675}
-                  fit="cover"
-                  position="center"
-                  sizes={SIZES}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  decoding="async"
-                  class="tdc-img"
-                />
+				  src={img}
+				  alt={i === 0 ? altText : ""}
+				  width={900}
+				  height={675}
+				  widths={[320, 480, 640, 768, 900]}
+				  sizes={SIZES}
+				  fit="cover"
+				  position="center"
+				  loading="lazy"
+				  decoding="async"
+				  class="tdc-img"
+				  quality={70}
+				/>
               </div>
             ))}
           </div>
@@ -67,17 +69,19 @@ const SIZES = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
     ) : (
       slides[0] ? (
         <Image
-          src={slides[0]}
-          alt={altText}
-          width={900}
-          height={675}
-          fit="cover"
-          position="center"
-          sizes={SIZES}
-          loading="eager"
-          decoding="async"
-          class="w-full h-full object-cover block"
-        />
+		  src={slides[0]}
+		  alt={altText}
+		  width={900}
+		  height={675}
+		  widths={[320, 480, 640, 768, 900]}
+		  sizes={SIZES}
+		  fit="cover"
+		  position="center"
+		  loading="lazy"
+		  decoding="async"
+		  class="w-full h-full object-cover block"
+		  quality={70}
+		/>
       ) : null
     )}
 

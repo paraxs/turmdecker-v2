@@ -21,14 +21,16 @@ const linkBase =
       class={"flex items-center gap-3 text-white uppercase tracking-tighter " + linkBase}
     >
       <Image
-        src={logo}
-        alt="Kofler e.U. Logo"
-        width={250}
-        height={195}
-        class="header-logo w-auto"
-        loading="eager"
-        decoding="async"
-      />
+	  src={logo}
+	  alt="Kofler e.U. Logo"
+	  width={250}
+	  height={195}
+	  widths={[96, 128, 160, 200, 250]}
+	  sizes="(min-width: 768px) 84px, 64px"
+	  class="header-logo w-auto"
+	  loading="eager"
+	  decoding="async"
+	/>
       <span class="header-word font-bold">
         TURM<span class="text-primary">DECKER</span>
       </span>
