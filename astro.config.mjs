@@ -5,7 +5,7 @@ import compress from 'astro-compress';
 
 export default defineConfig({
   // WICHTIG: muss zur kanonischen Domain passen (www vs non-www)
-  site: 'https://turmdecker.com'
+  site: 'https://turmdecker.com',
 
   build: {
     inlineStylesheets: 'auto',
