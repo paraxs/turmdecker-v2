@@ -28,24 +28,16 @@
 	const mobileFallbackSrc = mobileFallback?.src ?? "";
 
 	---
-		{mobileFallbackSrc && (
-	  <style>{`
-		@media (max-width: 768px){
-		  .hero-bg[data-hero-key="${storageKey}"]{
-			background-image:url('${mobileFallbackSrc}') !important;
-		  }
-		}
-	  `}</style>
-	)}
+		
 	<section class={`relative ${heightClass} flex items-center bg-dark-900 text-white overflow-hidden`}>
   <div class="absolute inset-0 z-0">
     <div
-      class={`hero-bg absolute inset-0 bg-cover ${bgPositionClass}`}
-      data-hero-images={JSON.stringify(srcs)}
-      data-hero-key={storageKey}
-      data-hero-allow-repeat={allowRepeat ? "1" : "0"}
-      style={fallback ? `background-image:url('${fallback}')` : undefined}
-    ></div>
+	class={`hero-bg absolute inset-0 bg-cover ${bgPositionClass}`}
+	style={`--hero-desktop: url('${fallback}'); ${mobileFallbackSrc ? `--hero-mobile: url('${mobileFallbackSrc}');` : ""}`}
+	  data-hero-images={JSON.stringify(srcs)}
+	  data-hero-key={storageKey}
+	  data-hero-allow-repeat={allowRepeat ? "1" : "0"}
+	></div>
 
     <div class={`hero-fade absolute inset-0 bg-cover ${bgPositionClass} opacity-0`}></div>
 
@@ -63,6 +55,22 @@
       .hero-fade { transition: none; }
     }
   </style>
+  <style>
+  .hero-bg {
+    background-image: var(--hero-desktop);
+  }
+
+  @media (max-width: 768px){
+    .hero-bg {
+      background-image: var(--hero-mobile, var(--hero-desktop));
+    }
+  }
+
+  .hero-fade { transition: opacity 520ms ease; will-change: opacity; }
+  @media (prefers-reduced-motion: reduce){
+    .hero-fade { transition: none; }
+  }
+</style>
 
   <script is:inline>
   (function () {
@@ -105,7 +113,7 @@
       if (!url) return;
 
       // Wenn es eh schon das gleiche ist: nix tun
-      const current = bg.style.backgroundImage || "";
+      const current = getComputedStyle(bg).backgroundImage || "";
       if (current.includes(url)) return;
 
       const img = new Image();
