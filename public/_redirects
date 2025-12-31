@@ -1,1 +1,3 @@
-https://www.turmdecker.com/*  https://turmdecker.com/:splat  301!
+http://www.turmdecker.com/*  https://turmdecker.com/:splat  301!
+http://turmdecker.com/*      https://turmdecker.com/:splat  301!
+https://www.turmdecker.com/* https://turmdecker.com/:splat  301!
