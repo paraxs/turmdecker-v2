@@ -1,3 +1,23 @@
-http://www.turmdecker.com/*  https://turmdecker.com/:splat  301!
-http://turmdecker.com/*      https://turmdecker.com/:splat  301!
-https://www.turmdecker.com/* https://turmdecker.com/:splat  301!
+# ---------------------------------------------------------
+# 1) DOMAIN + HTTPS KANONISIERUNG
+# ---------------------------------------------------------
+http://www.turmdecker.com/*   https://turmdecker.com/:splat   301!
+http://turmdecker.com/*       https://turmdecker.com/:splat   301!
+https://www.turmdecker.com/*  https://turmdecker.com/:splat   301!
+
+# ---------------------------------------------------------
+# 2) ALTE WP-INHALTE -> NEUE ZIELSEITEN (relevant + passend)
+# ---------------------------------------------------------
+/dachdecken/holzschindel/*    /laerchenschindel/              301!
+/dachdecken/kreuzstecken/*    /laerchenschindel/              301!
+/dachdecken/*                 /eindeckungen/                  301!
+
+# ---------------------------------------------------------
+# 3) WP-/SPAM-URLS NICHT RETTEN: bewusst 404 (kein Soft-404-Redirect)
+# ---------------------------------------------------------
+/author/*                     /404.html                       404
+/wp-admin/*                   /404.html                       404
+/wp-content/*                 /404.html                       404
+/wp-includes/*                /404.html                       404
+/wp-login.php                 /404.html                       404
+/xmlrpc.php                   /404.html                       404
