@@ -1,4 +1,5 @@
 ---
+import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -10,38 +11,36 @@ import imgOrthofoto from "../assets/photogrammetrie-digitaler-zwilling/photogram
 ---
 
 <Layout
-  title="Photogrammetrie & Digitaler Zwilling | Turmdecker (Kofler e.U.)"
-  description="Drohnen-gestützte Photogrammetrie für Kirchen, Türme und Dächer: 3D-Modelle, Orthofotos, Dokumentation und bessere Entscheidungsgrundlagen für Sanierung & Wartung."
+  title="Photogrammetrie & Digitaler Zwilling für Dächer & Kirchtürme | Turmdecker"
+  description="Drohnen-gestützte 3D-Bestandsaufnahme für Dächer, Kirchtürme und Bauwerke: 3D-Modell, Orthofoto, Fotodoku – fachlich interpretiert vom Dach- & Spengler-Fachbetrieb."
 >
   <Header slot="header" />
 
-  <section class="relative h-[55vh] flex items-center bg-dark-900 text-white overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <Image
-        src={heroImage}
-        alt=""
-        class="object-cover w-full h-full opacity-55"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
-    </div>
+	  <Hero
+	  images={[heroImage]}
+	  heightClass="min-h-[55vh]"
+	  alignClass="items-start"
+	  contentClass="pt-28 md:pt-32 pb-10 md:pb-14"
+	  overlayClass="bg-black/30"
+	  bgOpacityClass="opacity-55"
+	  storageKey="tdHero:photogrammetrie"
+	>
+	  <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">
+		Digitale Bestandsaufnahme
+	  </p>
 
-    <div class="container mx-auto px-4 relative z-10 mt-14 md:mt-16">
-      <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">
-        Digitale Bestandsaufnahme
-      </p>
-      <h1 class="text-4xl md:text-6xl font-bold mt-4">
-        PHOTOGRAMMETRIE<br />
-        <span class="text-primary">& DIGITALER ZWILLING.</span>
-      </h1>
-      <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
-        Daten brauchen Interpretation. Wir verbinden modernste 3D-Vermessung mit der 
-        Expertise aus <strong>Spenglerei, Schindeldeckung und Dachbau</strong>. 
-        Das Ergebnis: Gerüstfreie Bestandsaufnahme, präzise Details und eine 
-        technisch fundierte Dokumentation direkt vom Fachhandwerker.
-      </p>
-    </div>
-  </section>
+	  <h1 class="text-4xl md:text-6xl font-bold mt-4">
+		PHOTOGRAMMETRIE<br />
+		<span class="text-primary">& DIGITALER ZWILLING.</span>
+	  </h1>
+
+	  <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
+		Wir liefern nicht nur 3D-Daten, sondern eine verwertbare Baudokumentation – fachlich interpretiert aus Sicht
+		<strong> Spenglerei, Schindeldeckung und Dachbau</strong>.
+		Besonders sinnvoll für <strong> Dächer, Sakralbauten und Bauwerke im Bestand</strong>:
+		belastbare Maße/Details und eine technisch saubere Entscheidungsgrundlage für Planung, Angebot und Ausführung.
+	  </p>
+	</Hero>
 
   <section class="py-14 md:py-16 bg-white">
     <div class="container mx-auto px-4 max-w-4xl">

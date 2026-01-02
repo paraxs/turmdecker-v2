@@ -10,6 +10,8 @@
 	  storageKey?: string;    // z.B. "tdHero:index"
 	  allowRepeat?: boolean;  // default false
 	  bgPositionClass?: string; // NEU: z.B. "bg-center md:bg-[70%_center]"
+	  alignClass?: string;       // NEU: z.B. "items-center" oder "items-start"
+      bgOpacityClass?: string;   // NEU: z.B. "opacity-55"
 	}
 
 	const {
@@ -21,6 +23,8 @@
 	  storageKey = "tdHero",
 	  allowRepeat = false,
 	  bgPositionClass = "bg-center", // NEU: Default wie bisher
+	  alignClass = "items-center",
+      bgOpacityClass = "",
 	} = Astro.props as Props;
 
 	const srcs = (images ?? []).map((i) => i?.src).filter(Boolean) as string[];
@@ -29,17 +33,17 @@
 
 	---
 		
-	<section class={`relative ${heightClass} flex items-center bg-dark-900 text-white overflow-hidden`}>
+	<section class={`relative ${heightClass} flex ${alignClass} bg-dark-900 text-white overflow-hidden`}>
   <div class="absolute inset-0 z-0">
     <div
-	class={`hero-bg absolute inset-0 bg-cover ${bgPositionClass}`}
+	class={`hero-bg absolute inset-0 bg-cover ${bgPositionClass} ${bgOpacityClass}`}
 	style={`--hero-desktop: url('${fallback}'); ${mobileFallbackSrc ? `--hero-mobile: url('${mobileFallbackSrc}');` : ""}`}
 	  data-hero-images={JSON.stringify(srcs)}
 	  data-hero-key={storageKey}
 	  data-hero-allow-repeat={allowRepeat ? "1" : "0"}
 	></div>
 
-    <div class={`hero-fade absolute inset-0 bg-cover ${bgPositionClass} opacity-0`}></div>
+    <div class={`hero-fade absolute inset-0 bg-cover ${bgPositionClass} ${bgOpacityClass} opacity-0`}></div>
 
     <div class={`absolute inset-0 ${overlayClass}`}></div>
     <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
