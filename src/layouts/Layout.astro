@@ -23,8 +23,12 @@ const {
   hideWhatsApp = false
 } = Astro.props as Props;
 
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : null;
+const rawPath = Astro.url.pathname;
+const canonicalPath = rawPath === "/" ? "/" : rawPath.replace(/\/?$/, "/");
+const canonical = Astro.site ? new URL(canonicalPath, Astro.site).href : null;
+
 const desc = description ?? "Turmdecker - Gerüstfreies Kirchturmdecken";
+
 
 const hasHeaderSlot = Astro.slots.has("header");
 const hasFooterSlot = Astro.slots.has("footer");

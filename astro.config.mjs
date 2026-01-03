@@ -6,6 +6,7 @@ import compress from 'astro-compress';
 export default defineConfig({
   // WICHTIG: muss zur kanonischen Domain passen (www vs non-www)
   site: 'https://turmdecker.com',
+  trailingSlash: "always",
 
   build: {
     inlineStylesheets: 'auto',
