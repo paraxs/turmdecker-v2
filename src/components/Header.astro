@@ -4,8 +4,8 @@ import logo from "../assets/brand/kofler-logo.png";
 
 const pathname = Astro.url.pathname;
 const isHome = pathname === "/" || pathname === "";
-const isKontakt = pathname.startsWith("/kontakt");
-const isFaq = pathname.startsWith("/faq");
+const isKontakt = pathname.startsWith("/kontakt/");
+const isFaq = pathname.startsWith("/faq/");
 
 const linkBase =
   "px-1 py-2 rounded-sm transition-colors hover:text-primary " +
@@ -53,14 +53,14 @@ const linkBase =
     </a>
 
     <a
-      href="/faq"
+      href="/faq/"
       class={linkBase + " " + (isFaq ? "text-primary" : "text-white/90")}
     >
       FAQ
     </a>
 
     <a
-      href="/kontakt"
+      href="/kontakt/"
       class={linkBase + " " + (isKontakt ? "text-primary" : "text-white/90")}
     >
       Kontakt
@@ -89,7 +89,7 @@ const linkBase =
           </a>
 
           <a
-            href="/faq"
+            href="/faq/"
             class={
               "block px-4 py-3 text-white/90 hover:bg-white/10 " +
               (isFaq ? "text-primary" : "")
@@ -99,7 +99,7 @@ const linkBase =
           </a>
 
           <a
-            href="/kontakt"
+            href="/kontakt/"
             class={
               "block px-4 py-3 text-white/90 hover:bg-white/10 " +
               (isKontakt ? "text-primary" : "")

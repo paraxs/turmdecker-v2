@@ -6,55 +6,72 @@ interface Props {
   title: string;
   href: string;
   altText: string;
-
-  // Neu
   images?: ImageMetadata[];
-
-  // Legacy-Fallback
   imagePath?: ImageMetadata;
 }
 
-// Kill-Switch (wenn du es komplett deaktivieren willst)
 const CAROUSEL_ENABLED = true;
 
-const { title, href, altText, images, imagePath } = Astro.props as Props;
+const { title, href: rawHref, altText, images, imagePath } = Astro.props as Props;
+
+function normalizeInternalHref(input: string) {
+  const s = (input ?? "").trim();
+  if (!s) return "/";
+
+  // extern / special schemes nicht anfassen
+  if (/^(https?:)?\/\//i.test(s) || /^(mailto:|tel:|sms:)/i.test(s)) return s;
+
+  // Hash-only nicht anfassen
+  if (s.startsWith("#")) return s;
+
+  // Query/Hash abtrennen
+  const m = s.match(/^([^?#]*)(.*)$/);
+  const pathPart = m ? m[1] : s;
+  const suffix = m ? m[2] : "";
+
+  const withLeading = pathPart.startsWith("/") ? pathPart : `/${pathPart}`;
+
+  if (withLeading === "/") return "/" + suffix;
+
+  const withTrailing = withLeading.replace(/\/?$/, "/");
+  return withTrailing + suffix;
+}
+
+const href = normalizeInternalHref(rawHref);
 
 const slides = (images?.length ? images : imagePath ? [imagePath] : []).slice(0, 4);
 const hasCarousel = CAROUSEL_ENABLED && slides.length > 1;
 
-// Eindeutige ID pro Card (für Sync)
-const uid = "tdc-" + (href || title).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const uid =
+  "tdc-" + (href || title).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 const SIZES = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
 ---
 
-<a
-  href={href}
-  class="group block h-full bg-white flex flex-col shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 overflow-hidden rounded-sm"
->
+<article class="group h-full bg-white flex flex-col shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 overflow-hidden rounded-sm relative">
   <div class="relative w-full aspect-[4/3] overflow-hidden bg-gray-200">
-
     {hasCarousel ? (
-      <div class="tdc" data-td-carousel data-uid={uid} data-count={slides.length}>
+      <div class="tdc" data-td-carousel data-uid={uid} data-count={slides.length} data-href={href}>
         <button type="button" class="tdc-btn tdc-prev" aria-label="Vorheriges Bild">‹</button>
 
-        <div class="tdc-viewport" tabindex="0">
-          <div class="tdc-track" aria-label={`${title} Bilder`}>
+        <div class="tdc-viewport" tabindex="0" aria-label={`${title} Bilder`}>
+          <div class="tdc-track">
             {slides.map((img, i) => (
               <div class="tdc-slide">
                 <Image
-				  src={img}
-				  alt={i === 0 ? altText : ""}
-				  width={900}
-				  height={675}
-				  widths={[320, 480, 640, 768, 900]}
-				  sizes={SIZES}
-				  fit="cover"
-				  position="center"
-				  loading="lazy"
-				  decoding="async"
-				  class="tdc-img"
-				  quality={70}
-				/>
+                  src={img}
+                  alt={i === 0 ? altText : ""}
+                  width={900}
+                  height={675}
+                  widths={[320, 480, 640, 768, 900]}
+                  sizes={SIZES}
+                  fit="cover"
+                  position="center"
+                  loading="lazy"
+                  decoding="async"
+                  class="tdc-img"
+                  quality={70}
+                />
               </div>
             ))}
           </div>
@@ -62,216 +79,47 @@ const SIZES = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
 
         <button type="button" class="tdc-btn tdc-next" aria-label="Nächstes Bild">›</button>
 
-        <div class="tdc-dots" aria-hidden="true">
-          {slides.map((_, i) => <span class={"tdc-dot" + (i === 0 ? " is-active" : "")} data-dot={i}></span>)}
+        <div class="tdc-dots" aria-label="Bildauswahl">
+          {slides.map((_, i) => (
+            <button
+              type="button"
+              class={"tdc-dot" + (i === 0 ? " is-active" : "")}
+              data-dot={i}
+              aria-label={`Bild ${i + 1}`}
+            />
+          ))}
         </div>
+
+        <!-- Fallback: kleiner “Öffnen”-Button -->
+        <a href={href} class="tdc-open" aria-label={`${title} öffnen`}>↗</a>
       </div>
-    ) : (
-      slides[0] ? (
+    ) : slides[0] ? (
+      <a href={href} aria-label={`${title} öffnen`} class="block w-full h-full">
         <Image
-		  src={slides[0]}
-		  alt={altText}
-		  width={900}
-		  height={675}
-		  widths={[320, 480, 640, 768, 900]}
-		  sizes={SIZES}
-		  fit="cover"
-		  position="center"
-		  loading="lazy"
-		  decoding="async"
-		  class="w-full h-full object-cover block"
-		  quality={70}
-		/>
-      ) : null
-    )}
+          src={slides[0]}
+          alt={altText}
+          width={900}
+          height={675}
+          widths={[320, 480, 640, 768, 900]}
+          sizes={SIZES}
+          fit="cover"
+          position="center"
+          loading="lazy"
+          decoding="async"
+          class="w-full h-full object-cover block"
+          quality={70}
+        />
+      </a>
+    ) : null}
 
     <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/15 transition-colors duration-300 pointer-events-none"></div>
-
-    <style>
-      /* --- Carousel Layout --- */
-      .tdc{ position:relative; width:100%; height:100%; }
-      .tdc-viewport{
-        width:100%;
-        height:100%;
-        overflow-x:auto;
-        overflow-y:hidden;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .tdc-viewport::-webkit-scrollbar{ display:none; }
-
-      .tdc-track{
-        display:flex;
-        height:100%;
-        gap:0;
-      }
-      .tdc-slide{
-        flex: 0 0 100%;
-        height:100%;
-        scroll-snap-align: start;
-      }
-
-      /* WICHTIG: Bild wirklich vollflächig */
-      .tdc-slide :global(img),
-      .tdc-slide :global(picture){
-        width:100%;
-        height:100%;
-      }
-      .tdc-slide :global(img){
-        display:block;
-        width:100%;
-        height:100%;
-        object-fit:cover;
-      }
-
-      /* --- Buttons (nicht aufdringlich) --- */
-      .tdc-btn{
-        position:absolute;
-        top:50%;
-        transform: translateY(-50%);
-        z-index:5;
-        width:38px;
-        height:38px;
-        border-radius:999px;
-        border:1px solid rgba(255,255,255,.35);
-        background: rgba(0,0,0,.35);
-        color:#fff;
-        font-size:22px;
-        line-height:38px;
-        text-align:center;
-        cursor:pointer;
-        opacity:.0;
-        transition: opacity .25s ease, background-color .25s ease, transform .25s ease;
-        user-select:none;
-      }
-      .tdc-prev{ left:10px; }
-      .tdc-next{ right:10px; }
-
-      a.group:hover .tdc-btn,
-      a.group:focus-within .tdc-btn{ opacity:.95; }
-
-      .tdc-btn:hover{ background: rgba(0,0,0,.55); }
-
-      /* Mobile: Buttons immer leicht sichtbar (aber nicht dominant) */
-      @media (max-width: 639px){
-        .tdc-btn{ opacity:.75; }
-      }
-
-      /* Dots */
-      .tdc-dots{
-        position:absolute;
-        left:50%;
-        bottom:10px;
-        transform: translateX(-50%);
-        display:flex;
-        gap:6px;
-        z-index:6;
-        opacity:.9;
-      }
-      .tdc-dot{
-        width:7px; height:7px;
-        border-radius:999px;
-        background: rgba(255,255,255,.55);
-        border:1px solid rgba(0,0,0,.12);
-      }
-      .tdc-dot.is-active{
-        background: rgba(255,255,255,.95);
-      }
-
-      /* Reduced motion: kein Smooth Scroll */
-      @media (prefers-reduced-motion: reduce){
-        .tdc-viewport{ scroll-behavior: auto; }
-      }
-    </style>
-
-    <script is:inline>
-      // Einmalig initialisieren (auch wenn ServiceCard mehrfach gerendert wird)
-      if (!window.__tdCarouselInit) {
-        window.__tdCarouselInit = true;
-
-        const prefersReduced = () =>
-          window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        const state = new Map(); // uid -> { idx, count, viewport, dots }
-
-        function setActiveDot(uid, idx){
-          const s = state.get(uid);
-          if (!s) return;
-          s.dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
-        }
-
-        function go(uid, dir){
-          const s = state.get(uid);
-          if (!s) return;
-
-          const w = s.viewport.clientWidth || 1;
-          s.idx = (s.idx + dir + s.count) % s.count;
-
-          s.viewport.scrollTo({
-            left: s.idx * w,
-            behavior: prefersReduced() ? "auto" : "smooth"
-          });
-
-          setActiveDot(uid, s.idx);
-        }
-
-        function syncStep(dir){
-          state.forEach((_v, uid) => go(uid, dir));
-        }
-
-        function init(){
-          document.querySelectorAll("[data-td-carousel]").forEach((root) => {
-            const uid = root.getAttribute("data-uid");
-            const count = parseInt(root.getAttribute("data-count") || "1", 10);
-            const viewport = root.querySelector(".tdc-viewport");
-            const prev = root.querySelector(".tdc-prev");
-            const next = root.querySelector(".tdc-next");
-            const dots = Array.from(root.querySelectorAll(".tdc-dot"));
-
-            if (!uid || !viewport || count < 2) return;
-            if (state.has(uid)) return;
-
-            state.set(uid, { idx: 0, count, viewport, dots });
-
-            prev?.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); syncStep(-1); });
-            next?.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); syncStep(+1); });
-
-            // Wenn man per Touch scrollt: Dots lokal nachziehen (ohne Sync-Event)
-            let t;
-            viewport.addEventListener("scroll", () => {
-              clearTimeout(t);
-              t = setTimeout(() => {
-                const w = viewport.clientWidth || 1;
-                const idx = Math.round(viewport.scrollLeft / w);
-                const s = state.get(uid);
-                if (!s) return;
-                s.idx = Math.max(0, Math.min(s.count - 1, idx));
-                setActiveDot(uid, s.idx);
-              }, 80);
-            }, { passive: true });
-
-            // Resize: auf aktuellen Slide „einschnappen“, damit nichts halb sichtbar bleibt
-            window.addEventListener("resize", () => {
-              const s = state.get(uid);
-              if (!s) return;
-              const w = s.viewport.clientWidth || 1;
-              s.viewport.scrollTo({ left: s.idx * w, behavior: "auto" });
-            }, { passive: true });
-          });
-        }
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", init, { once: true });
-        } else {
-          init();
-        }
-      }
-    </script>
   </div>
 
-  <div class="p-8 flex-grow flex flex-col justify-between border-b-4 border-transparent group-hover:border-primary transition-colors">
+  <a
+    href={href}
+    class="p-8 flex-grow flex flex-col justify-between border-b-4 border-transparent group-hover:border-primary transition-colors"
+    aria-label={`${title} öffnen`}
+  >
     <div>
       <h3 class="text-xl font-bold uppercase tracking-tight text-dark-900 group-hover:text-primary transition-colors mb-4">
         {title}
@@ -282,5 +130,109 @@ const SIZES = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
     <span class="text-xs font-bold text-gray-400 group-hover:text-dark-900 uppercase tracking-widest self-end mt-4">
       Mehr erfahren &rarr;
     </span>
-  </div>
-</a>
+  </a>
+</article>
+
+<style is:global>
+  .tdc{ position:relative; width:100%; height:100%; }
+  .tdc-viewport{
+    width:100%;
+    height:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: pointer;
+  }
+  .tdc-viewport::-webkit-scrollbar{ display:none; }
+  .tdc-track{ display:flex; height:100%; gap:0; }
+  .tdc-slide{ flex:0 0 100%; height:100%; scroll-snap-align:start; }
+
+  .tdc-slide img,
+  .tdc-slide picture{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+  .tdc-slide img{ object-fit:cover; }
+
+  .tdc-btn{
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    z-index:5;
+    width:38px;
+    height:38px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.35);
+    background: rgba(0,0,0,.35);
+    color:#fff;
+    font-size:22px;
+    line-height:38px;
+    text-align:center;
+    cursor:pointer;
+    opacity:0;
+    transition: opacity .25s ease, background-color .25s ease, transform .25s ease;
+    user-select:none;
+  }
+  .tdc-prev{ left:10px; }
+  .tdc-next{ right:10px; }
+
+  .group:hover .tdc-btn,
+  .group:focus-within .tdc-btn{ opacity:.95; }
+  .tdc-btn:hover{ background: rgba(0,0,0,.55); }
+
+  @media (max-width: 639px){
+    .tdc-btn{ opacity:.75; }
+  }
+
+  /* Dots: als echte Buttons (klickbar) */
+  .tdc-dots{
+    position:absolute;
+    left:50%;
+    bottom:10px;
+    transform: translateX(-50%);
+    display:flex;
+    gap:6px;
+    z-index:6;
+    opacity:.9;
+  }
+  .tdc-dot{
+    width:10px; height:10px;
+    border-radius:999px;
+    background: rgba(255,255,255,.55);
+    border:1px solid rgba(0,0,0,.12);
+    cursor:pointer;
+    padding:0;
+  }
+  .tdc-dot.is-active{ background: rgba(255,255,255,.95); }
+
+  .tdc-open{
+    position:absolute;
+    right:10px;
+    top:10px;
+    z-index:7;
+    width:34px;
+    height:34px;
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:700;
+    border:1px solid rgba(255,255,255,.35);
+    background: rgba(0,0,0,.35);
+    text-decoration:none;
+    opacity:.0;
+    transition: opacity .25s ease, background-color .25s ease;
+  }
+  .group:hover .tdc-open,
+  .group:focus-within .tdc-open{ opacity:.95; }
+  .tdc-open:hover{ background: rgba(0,0,0,.55); }
+
+  @media (prefers-reduced-motion: reduce){
+    .tdc-viewport{ scroll-behavior:auto; }
+  }
+</style>
