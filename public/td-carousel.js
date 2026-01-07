@@ -21,6 +21,10 @@ function scrollToIdx(viewport, idx) {
 }
 
 function initCarousel(root) {
+  // idempotent
+  if (root.dataset.tdcInit === "1") return;
+  root.dataset.tdcInit = "1";
+
   const count = parseInt(root.getAttribute("data-count") || "1", 10);
   const viewport = root.querySelector(".tdc-viewport");
   if (!viewport || count < 2) return;
@@ -70,37 +74,82 @@ function initCarousel(root) {
   );
 
   // Resize snap
-  window.addEventListener(
-    "resize",
-    () => scrollToIdx(viewport, idx),
-    { passive: true }
-  );
+  window.addEventListener("resize", () => scrollToIdx(viewport, idx), {
+    passive: true,
+  });
 
-  // --- Click vs Drag: wenn geswiped wurde, darf der <a> im Slide NICHT navigieren ---
+  // --- Desktop Drag-to-Scroll ohne setPointerCapture (damit Links nicht sterben) ---
   let downX = 0;
   let downY = 0;
+  let startScroll = 0;
+  let active = false;
   let dragging = false;
 
+  // Block click direkt nach Drag (weil click nach pointerup feuert)
+  let blockClickUntil = 0;
+
+  function onMove(e) {
+    if (!active) return;
+
+    const dx = e.clientX - downX;
+    const dy = e.clientY - downY;
+
+    // Drag erst ab klarer Schwelle aktivieren
+    if (!dragging && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+      dragging = true;
+      viewport.classList.add("is-dragging");
+    }
+
+    if (dragging) {
+      viewport.scrollLeft = startScroll - dx;
+      e.preventDefault();
+    }
+  }
+
+  function endDrag() {
+    if (!active) return;
+
+    active = false;
+    window.removeEventListener("pointermove", onMove, true);
+    window.removeEventListener("pointerup", endDrag, true);
+    window.removeEventListener("pointercancel", endDrag, true);
+
+    if (dragging) {
+      blockClickUntil = performance.now() + 350;
+    }
+
+    dragging = false;
+    viewport.classList.remove("is-dragging");
+  }
+
   viewport.addEventListener("pointerdown", (e) => {
+    // Touch: native scroll lassen
+    if (e.pointerType === "touch") return;
+
+    // Nur linker Mausbutton
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+
+    active = true;
+    dragging = false;
+
     downX = e.clientX;
     downY = e.clientY;
-    dragging = false;
+    startScroll = viewport.scrollLeft;
+
+    // Global listener, damit Drag auch außerhalb sauber endet
+    window.addEventListener("pointermove", onMove, true);
+    window.addEventListener("pointerup", endDrag, true);
+    window.addEventListener("pointercancel", endDrag, true);
   });
 
-  viewport.addEventListener("pointermove", (e) => {
-    if (Math.abs(e.clientX - downX) > 8 || Math.abs(e.clientY - downY) > 8) {
-      dragging = true;
-    }
-  });
-
-  // Capture-Phase: blockiert Link-Klick nach Drag
+  // Capture: blockiert Link-Klick nur direkt nach echtem Drag
   viewport.addEventListener(
     "click",
     (e) => {
-      if (!dragging) return;
-      e.preventDefault();
-      e.stopPropagation();
-      dragging = false;
+      if (performance.now() < blockClickUntil) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
     },
     true
   );
@@ -112,8 +161,13 @@ function initAll() {
   document.querySelectorAll("[data-td-carousel]").forEach(initCarousel);
 }
 
+// Initial load
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initAll, { once: true });
 } else {
   initAll();
 }
+
+// Astro ViewTransitions / Soft-Navigation: re-init
+document.addEventListener("astro:page-load", initAll);
+document.addEventListener("astro:after-swap", initAll);
