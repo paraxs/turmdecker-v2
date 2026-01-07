@@ -1,7 +1,10 @@
 ---
 import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
+
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import WhatsAppBtn from "../components/WhatsAppBtn.astro";
 
 interface Props {
   title: string;
@@ -20,28 +23,56 @@ const {
   ogImage,
   hideHeader = false,
   hideFooter = false,
-  hideWhatsApp = false
+  hideWhatsApp = false,
 } = Astro.props as Props;
 
+// --- Canonical (Trailing Slash erzwingen) ---
 const rawPath = Astro.url.pathname;
 const canonicalPath = rawPath === "/" ? "/" : rawPath.replace(/\/?$/, "/");
 const canonical = Astro.site ? new URL(canonicalPath, Astro.site).href : null;
 
+// --- Meta Description ---
 const desc = description ?? "Turmdecker - Gerüstfreies Kirchturmdecken";
 
-
+// --- Slots (nicht kaputt-optimieren) ---
 const hasHeaderSlot = Astro.slots.has("header");
 const hasFooterSlot = Astro.slots.has("footer");
 
-// optional: Standardbild für strukturierte Daten (ohne kaputte Quotes/Kommentare)
-const structuredImage = Astro.site
-  ? new URL("/hero/hero-03.webp", Astro.site).href
-  : "/hero/hero-03.webp";
+// --- Absolut-URL Helper ---
+const site = Astro.site ?? new URL("https://turmdecker.com/");
+const abs = (pathOrUrl: string) => new URL(pathOrUrl, site).href;
+
+// --- Default Bild für strukturierte Daten ---
+const structuredImage = abs("/hero/hero-03.webp");
+
+// --- JSON-LD (nur Austria, kein sameAs) ---
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  "@id": `${site.href.replace(/\/?$/, "/")}#business`,
+  name: "Turmdecker – Kofler e.U.",
+  url: site.href.replace(/\/?$/, "/"),
+  logo: abs("/favicon.svg"),
+  image: structuredImage,
+  description:
+    "Gerüstfreies Kirchturmdecken und Spezialarbeiten am Seil – Lärchenschindeln, Kupfer, Schiefer. Österreichweit, grenzüberschreitend nach Bedarf.",
+  telephone: "+43 664 4328298",
+  email: "office@turmdecker.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Peggetzstraße 20",
+    postalCode: "9900",
+    addressLocality: "Lienz",
+    addressRegion: "Tirol",
+    addressCountry: "AT",
+  },
+  founder: { "@type": "Person", name: "Franz Kofler" },
+  areaServed: [{ "@type": "Country", name: "Austria" }],
+};
 ---
 
-
 <!doctype html>
-<html lang="de" class="scroll-smooth">
+<html lang="de-AT" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,106 +88,60 @@ const structuredImage = Astro.site
 
     {noindex && <meta name="robots" content="noindex,nofollow" />}
 
-    <!-- Optional: Social Preview -->
+    <!-- Social Preview -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
     {canonical && <meta property="og:url" content={canonical} />}
-    {ogImage && <meta property="og:image" content={Astro.site ? new URL(ogImage, Astro.site).href : ogImage} />}
+    {ogImage && (
+      <meta
+        property="og:image"
+        content={Astro.site ? new URL(ogImage, Astro.site).href : ogImage}
+      />
+    )}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={desc} />
-    {ogImage && <meta name="twitter:image" content={Astro.site ? new URL(ogImage, Astro.site).href : ogImage} />}
+    {ogImage && (
+      <meta
+        name="twitter:image"
+        content={Astro.site ? new URL(ogImage, Astro.site).href : ogImage}
+      />
+    )}
 
     <!-- Favicons (stabil, Google-kompatibel) -->
-	<link rel="icon" href="/favicon.ico" sizes="any">
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-	<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
-	<link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
 
+    <!-- View Transitions (App-Feeling). Wenn irgendwas spinnt: diese Zeile raus. -->
+    <ViewTransitions />
 
     <slot name="head" />
-	
-	<script
-  type="application/ld+json"
-  set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "RoofingContractor",
-    "name": "Turmdecker – Kofler e.U.",
-    "url": "https://turmdecker.com",
-    "logo": "https://turmdecker.com/favicon.svg",
-    "image": structuredImage,
-    "description": "Gerüstfreies Kirchturmdecken und Spezialarbeiten am Seil mit Lärchenschindeln, Kupfer und Schiefer aus Osttirol.",
-    "telephone": "+43 664 4328298",
-    "email": "office@turmdecker.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Peggetzstraße 20",
-      "postalCode": "9900",
-      "addressLocality": "Lienz",
-      "addressRegion": "Osttirol",
-      "addressCountry": "AT"
-    },
-    "founder": { "@type": "Person", "name": "Franz Kofler" },
-    "areaServed": { "@type": "AdministrativeArea", "name": "Osttirol" },
-    "sameAs": []
-  })}
-/>
 
-<script
-  type="application/ld+json"
-  set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Turmdecker – Kofler e.U.",
-    "url": "https://turmdecker.com"
-  })}
-/>
-	
+    <!-- JSON-LD: Business-Schema nur auf der Startseite -->
+    {Astro.url.pathname === "/" && (
+      <script type="application/ld+json" set:html={JSON.stringify(orgSchema)}></script>
+    )}
   </head>
 
-  <body class="bg-white text-gray-900 font-sans">
-  {!hideHeader && (hasHeaderSlot ? <slot name="header" /> : <Header />)}
+  <body class="bg-white text-gray-900 font-sans antialiased">
+    {!hideHeader && (hasHeaderSlot ? <slot name="header" /> : <Header />)}
 
-  <main>
-    <slot />
-  </main>
+    <main>
+      <slot />
+    </main>
 
-  {!hideFooter && (hasFooterSlot ? <slot name="footer" /> : <Footer />)}
+    {!hideFooter && (hasFooterSlot ? <slot name="footer" /> : <Footer />)}
 
-  {!hideWhatsApp && (
-    <a
-      href="https://wa.me/436644328298?text=Guten%20Tag%2C%20ich%20habe%20eine%20Frage%20zu%20Ihren%20Leistungen."
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Kontakt über WhatsApp aufnehmen"
-      class="fixed z-40 bottom-4 right-4 md:bottom-6 md:right-6 flex items-center gap-2 px-4 py-2 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-xl hover:bg-[#1ebe5d] transition text-sm md:text-base"
-    >
-  <!-- WhatsApp Icon (SVG) -->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 32 32"
-    class="w-5 h-5 md:w-6 md:h-6"
-    aria-hidden="true"
-  >
-    <path
-      fill="currentColor"
-      d="M16 3C9.383 3 4 8.383 4 15c0 2.21.613 4.295 1.777 6.137L4 29l7.137-1.777A11.86 11.86 0 0 0 16 27c6.617 0 12-5.383 12-12S22.617 3 16 3zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10a9.83 9.83 0 0 1-4.986-1.355l-.355-.207-4.23 1.053 1.09-4.16-.23-.37A9.8 9.8 0 0 1 6 15c0-5.514 4.486-10 10-10zm-3.316 4a1.1 1.1 0 0 0-.777.383c-.203.23-.664.648-.664 1.574s.68 1.82.774 1.945c.094.125 1.34 2.137 3.27 3.004 1.613.711 1.938.645 2.285.605.347-.04 1.125-.461 1.285-.906.16-.445.16-.824.113-.906-.047-.082-.18-.129-.379-.227s-1.125-.555-1.301-.617c-.176-.062-.305-.094-.434.094-.129.188-.5.617-.613.742-.113.125-.227.141-.422.047-.195-.094-.824-.305-1.57-.973-.58-.517-.973-1.156-1.086-1.352-.113-.195-.012-.301.082-.398.084-.084.195-.219.293-.328.098-.109.129-.188.195-.313.066-.125.035-.234-.016-.328-.051-.094-.449-1.078-.617-1.48-.164-.395-.332-.34-.434-.344z"
-    />
-  </svg>
+    {!hideWhatsApp && <WhatsAppBtn />}
 
-  <!-- Text nur ab sm-Viewport -->
-  <span class="hidden sm:inline">
-    WhatsApp
-  </span>
-</a>
-  )}
-  <script src="/td-carousel.js" defer></script>
-
-</body>
+    <script src="/td-carousel.js" defer></script>
+  </body>
 </html>

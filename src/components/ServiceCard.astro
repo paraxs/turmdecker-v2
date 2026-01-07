@@ -51,44 +51,46 @@ const SIZES = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
 <article class="group h-full bg-white flex flex-col shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 overflow-hidden rounded-sm relative">
   <div class="relative w-full aspect-[4/3] overflow-hidden bg-gray-200">
     {hasCarousel ? (
-      <div class="tdc" data-td-carousel data-uid={uid} data-count={slides.length} data-href={href}>
+      <div class="tdc" data-td-carousel data-uid={uid} data-count={slides.length}>
         <button type="button" class="tdc-btn tdc-prev" aria-label="Vorheriges Bild">‹</button>
 
         <div class="tdc-viewport" tabindex="0" aria-label={`${title} Bilder`}>
           <div class="tdc-track">
             {slides.map((img, i) => (
-              <div class="tdc-slide">
-                <Image
-                  src={img}
-                  alt={i === 0 ? altText : ""}
-                  width={900}
-                  height={675}
-                  widths={[320, 480, 640, 768, 900]}
-                  sizes={SIZES}
-                  fit="cover"
-                  position="center"
-                  loading="lazy"
-                  decoding="async"
-                  class="tdc-img"
-                  quality={70}
-                />
-              </div>
-            ))}
+		  <div class="tdc-slide">
+			<a href={href} class="tdc-slideLink" aria-label={`${title} öffnen`}>
+			  <Image
+				src={img}
+				alt={i === 0 ? altText : ""}
+				width={900}
+				height={675}
+				widths={[320, 480, 640, 768, 900]}
+				sizes={SIZES}
+				fit="cover"
+				position="center"
+				loading="lazy"
+				decoding="async"
+				class="tdc-img"
+				quality={70}
+			  />
+			</a>
+		  </div>
+		))}
           </div>
         </div>
 
         <button type="button" class="tdc-btn tdc-next" aria-label="Nächstes Bild">›</button>
 
         <div class="tdc-dots" aria-label="Bildauswahl">
-          {slides.map((_, i) => (
-            <button
-              type="button"
-              class={"tdc-dot" + (i === 0 ? " is-active" : "")}
-              data-dot={i}
-              aria-label={`Bild ${i + 1}`}
-            />
-          ))}
-        </div>
+		  {slides.map((_, i) => (
+			<button
+			  type="button"
+			  class={"tdc-dot" + (i === 0 ? " is-active" : "")}
+			  data-dot={i}
+			  aria-label={`Bild ${i + 1}`}
+			></button>
+		  ))}
+		</div>
 
         <!-- Fallback: kleiner “Öffnen”-Button -->
         <a href={href} class="tdc-open" aria-label={`${title} öffnen`}>↗</a>
@@ -135,6 +137,11 @@ const SIZES = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
 
 <style is:global>
   .tdc{ position:relative; width:100%; height:100%; }
+  .tdc-slideLink{
+    display:block;
+    width:100%;
+    height:100%;
+	}
   .tdc-viewport{
     width:100%;
     height:100%;
