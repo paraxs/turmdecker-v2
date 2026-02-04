@@ -1,0 +1,190 @@
+---
+import Hero from "../components/Hero.astro";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+
+// Hero
+import heroImage from "../assets/Workshop/Workshop hero 1.webp";
+
+// Bilder-Bar (4 Stück)
+import ws1 from "../assets/Workshop/Workshop1.webp";
+import ws2 from "../assets/Workshop/Workshop2.webp";
+import ws3 from "../assets/Workshop/Workshop3.webp";
+import ws4 from "../assets/Workshop/Workshop5.webp";
+---
+
+<Layout
+  title="Workshop Lärchenschindeln: Praxis & Montage | Turmdecker"
+  description="Praxis-Workshop rund um Lärchenschindeln: Herstellung, Montage, Details und Qualitätskontrolle. Ideal für Schulen, Teams und Betriebe – österreichweit und darüber hinaus."
+>
+  <Header slot="header" />
+
+  <Hero
+    images={[heroImage]}
+    heightClass="h-[55vh]"
+    contentClass="pt-24 md:pt-28"
+    overlayClass="bg-black/35"
+    bgOpacityClass=""
+    storageKey="tdHero:workshop"
+  >
+    <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">
+      Praxis-Workshop &amp; echtes Handwerk
+    </p>
+
+    <h1 class="text-4xl md:text-6xl font-bold mt-4">
+      WORKSHOP<span class="text-primary">.</span>
+    </h1>
+
+    <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
+  Vom geschnittenen Baum bis zur fertigen Deckung: Wir spalten, putzen und montieren Lärchenschindeln so,
+  dass du den Kreislauf verstehst – in der Hand und am Bauteil.
+</p>
+  </Hero>
+
+  <!-- TEXTBLOCK -->
+  <section class="py-14 md:py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-6">
+        Was du im Workshop wirklich mitnimmst
+      </h2>
+
+      <p class="text-gray-700 leading-relaxed mb-4">
+		Im Workshop geht’s nicht darum, sich Fachwörter anzuhören. Wir bauen den Weg so auf,
+		dass du ihn wirklich verstehst: <strong>vom Baum bis zur Deckung</strong>.
+		Genau dieser Kreislauf macht den Unterschied zwischen „sieht nett aus“ und „hält jahrzehntelang“.
+	  </p>
+
+	   <p class="text-gray-700 leading-relaxed mb-4">
+		Wir starten beim Material und bei der Faserrichtung. Dann machen wir es wie es traditionell gehört:
+		<strong>Stammscheiben/Abschnitte vierteln</strong>, daraus die Schindeln <strong>herausspalten</strong>
+		und anschließend <strong>putzen/dressen</strong>, bis sie deckfähig sind. Erst wenn du das selber machst,
+		merkst du, warum gutes Holz „führt“ – und warum schlechtes Holz dich arbeiten lässt, aber nicht liefert.
+	  </p>
+
+	  <p class="text-gray-700 leading-relaxed">
+		Danach bauen wir die Workshop-Dachkonstruktion so, dass man sauber üben kann:
+		Unterbau, <strong>Lattung</strong>, und dann die <strong>fachgerechte Montage</strong> deiner eigenen Schindeln –
+		Deckbild, Befestigung, Reihenabstände, Traufe/Ortgang/First, plus typische Fehlerbilder.
+		Für Interessierte, Studierende, Lehrende, Planer, Ingenieure und Handwerker – kurz: für alle,
+		die Holzschindeln nicht nur anschauen, sondern <strong>begreifen</strong> wollen.
+		Durchführung je nach Rahmenbedingungen vor Ort oder an einem definierten Standort –
+		<strong>österreichweit und grenzüberschreitend</strong>.
+	  </p>
+	  <ul class="mt-8 grid gap-3 md:gap-4 md:grid-cols-2">
+	  <li class="flex gap-3 rounded-md border border-gray-200 bg-gray-50 p-4">
+		<span class="mt-0.5 text-primary font-bold">1</span>
+		<span class="text-gray-800">
+		  <strong>Holz lesen:</strong> Faserrichtung, Qualität, was funktioniert – und was später reißt.
+		</span>
+	  </li>
+
+	  <li class="flex gap-3 rounded-md border border-gray-200 bg-gray-50 p-4">
+		<span class="mt-0.5 text-primary font-bold">2</span>
+		<span class="text-gray-800">
+		  <strong>Vierteln & spalten:</strong> vom Stück zur Roh-Schindel – sauber entlang der Faser.
+		</span>
+	  </li>
+
+	  <li class="flex gap-3 rounded-md border border-gray-200 bg-gray-50 p-4">
+		<span class="mt-0.5 text-primary font-bold">3</span>
+		<span class="text-gray-800">
+		  <strong>Putzen/dressen:</strong> deckfähig machen, sortieren, verstehen warum “richtig” sich richtig anfühlt.
+		</span>
+	  </li>
+
+	  <li class="flex gap-3 rounded-md border border-gray-200 bg-gray-50 p-4">
+		<span class="mt-0.5 text-primary font-bold">4</span>
+		<span class="text-gray-800">
+		  <strong>Konstruktion & Lattung:</strong> Workshop-Dach aufbauen, Anschläge, Raster, saubere Vorbereitung.
+		</span>
+	  </li>
+
+	  <li class="flex gap-3 rounded-md border border-gray-200 bg-gray-50 p-4 md:col-span-2">
+		<span class="mt-0.5 text-primary font-bold">5</span>
+		<span class="text-gray-800">
+		  <strong>Montage & Qualitätscheck:</strong> Deckbild, Befestigung, Abstände, Traufe/Ortgang/First – plus typische Fehlerbilder und wie man sie abstellt.
+		</span>
+	  </li>
+	</ul>
+
+
+    </div>
+  </section>
+
+  <!-- BILDER-BAR -->
+  <section class="py-12 md:py-14 bg-gray-50 border-y border-gray-200">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-4">
+        Einblick in den Workshop
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-8">
+        Vier kurze Eindrücke – sauber, nah dran, ohne Marketing-Gekleister.
+      </p>
+
+      <!-- “Bar”: auf Mobile horizontal scroll, ab md als 4er Reihe -->
+      <div class="flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible">
+        <figure class="min-w-[78%] md:min-w-0 overflow-hidden rounded-sm shadow-sm bg-white">
+          <Image
+            src={ws1}
+            alt="Workshop Lärchenschindeln: Praxisarbeit am Übungsdach"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-64 md:h-56 object-cover"
+          />
+        </figure>
+
+        <figure class="min-w-[78%] md:min-w-0 overflow-hidden rounded-sm shadow-sm bg-white">
+          <Image
+            src={ws2}
+            alt="Lärchenschindeln Workshop: Herstellung und Auswahl"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-64 md:h-56 object-cover"
+          />
+        </figure>
+
+        <figure class="min-w-[78%] md:min-w-0 overflow-hidden rounded-sm shadow-sm bg-white">
+          <Image
+            src={ws3}
+            alt="Workshop Holzschindeln: Montage und Details"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-64 md:h-56 object-cover"
+          />
+        </figure>
+
+        <figure class="min-w-[78%] md:min-w-0 overflow-hidden rounded-sm shadow-sm bg-white">
+          <Image
+            src={ws4}
+            alt="Qualitätskontrolle im Lärchenschindeln Workshop"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-64 md:h-56 object-cover"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-primary text-white text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold mb-5">
+        Workshop anfragen
+      </h2>
+      <p class="max-w-2xl mx-auto text-white/90 mb-8">
+        Schreib kurz Teilnehmerzahl, Ort und Zeitfenster – wir sagen dir direkt, ob das Setup sinnvoll ist und wie wir es aufziehen.
+      </p>
+      <a
+        href="/kontakt/"
+        class="inline-block bg-white text-primary hover:bg-dark-900 hover:text-white px-10 py-4 font-bold rounded transition-all shadow-xl"
+      >
+        Kontakt aufnehmen
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
