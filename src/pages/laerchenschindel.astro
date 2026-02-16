@@ -80,24 +80,33 @@ const SHINGLE_CALC_URL = "https://tools.turmdecker.com/bedarfsermittlung-holzsch
       reduzieren.
     </p>
 
-    <!-- Bedarfsrechner CTA -->
-    <div class="mt-6 rounded-xl border border-black/10 bg-black/5 p-5">
-      <p class="font-bold">Bedarfsrechner für Lärchenschindeln</p>
-      <p class="mt-2 text-sm text-black/70">
-        Mengen & Bedarf in wenigen Minuten berechnen – ideal für Vorplanung und Angebotsphase.
+    <!-- Bedarfsrechner CTA (innerhalb von ContentSection) -->
+	<div class="not-prose mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6">
+	 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+      <p class="text-dark-900 font-bold text-lg">
+        Bedarfsrechner für Lärchenschindeln
       </p>
-
-      <a
-        href={SHINGLE_CALC_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mt-4 inline-flex items-center justify-center bg-primary text-white px-6 py-3 font-bold rounded hover:bg-dark-900 hover:text-white transition-colors"
-      >
-        Bedarfsrechner öffnen
-      </a>
-
-      <p class="mt-2 text-xs text-black/55">Öffnet in neuem Tab (tools.turmdecker.com)</p>
+      <p class="mt-1 text-gray-600 text-sm">
+        Schnelle Mengen- und Bedarfsermittlung – ideal für Vorplanung & Angebotsphase.
+      </p>
     </div>
+
+    <a
+      href="https://tools.turmdecker.com/bedarfsermittlung-holzschindel.html"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center rounded px-6 py-3 font-bold bg-primary text-white hover:bg-dark-900 transition-colors"
+    >
+      Rechner öffnen
+    </a>
+  </div>
+
+  <p class="mt-3 text-xs text-gray-500">
+    Richtwert-Rechner. Für ein belastbares Angebot: Kontakt aufnehmen.
+  </p>
+  </div>
+
   </ContentSection>
 
   <!-- SECTION 3 -->
