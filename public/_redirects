@@ -4,8 +4,8 @@
 http://www.turmdecker.com/*   https://turmdecker.com/:splat   301!
 http://turmdecker.com/*       https://turmdecker.com/:splat   301!
 https://www.turmdecker.com/*  https://turmdecker.com/:splat   301!
-https://tools.turmdecker.com/  301!
-https://tools.turmdecker.com/:splat 301!
+/tools   https://tools.turmdecker.com/        301!
+/tools/* https://tools.turmdecker.com/:splat  301!
 
 # ---------------------------------------------------------
 # 2) ALTE WP-INHALTE -> NEUE ZIELSEITEN (relevant + passend)
