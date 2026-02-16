@@ -10,6 +10,7 @@ import imgLs01 from "../assets/laerchenschindel/laerchenschindel04.webp";
 import imgLs02 from "../assets/laerchenschindel/laerchenschindel02.webp";
 import imgLs03 from "../assets/laerchenschindel/laerchenschindel03.webp";
 import imgLs05 from "../assets/laerchenschindel/laerchenschindel05.webp";
+const SHINGLE_CALC_URL = "https://tools.turmdecker.com/bedarfsermittlung-holzschindel.html";
 ---
 
 <Layout
@@ -60,7 +61,7 @@ import imgLs05 from "../assets/laerchenschindel/laerchenschindel05.webp";
     </ul>
   </ContentSection>
 
-  <!-- SECTION 2 -->
+    <!-- SECTION 2 -->
   <ContentSection
     title="Kosten & Wirtschaftlichkeit"
     image={imgLs02}
@@ -78,6 +79,25 @@ import imgLs05 from "../assets/laerchenschindel/laerchenschindel05.webp";
       Sanierungen bestehender Dächer Gerüst- und Nebenkosten deutlich
       reduzieren.
     </p>
+
+    <!-- Bedarfsrechner CTA -->
+    <div class="mt-6 rounded-xl border border-black/10 bg-black/5 p-5">
+      <p class="font-bold">Bedarfsrechner für Lärchenschindeln</p>
+      <p class="mt-2 text-sm text-black/70">
+        Mengen & Bedarf in wenigen Minuten berechnen – ideal für Vorplanung und Angebotsphase.
+      </p>
+
+      <a
+        href={SHINGLE_CALC_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-4 inline-flex items-center justify-center bg-primary text-white px-6 py-3 font-bold rounded hover:bg-dark-900 hover:text-white transition-colors"
+      >
+        Bedarfsrechner öffnen
+      </a>
+
+      <p class="mt-2 text-xs text-black/55">Öffnet in neuem Tab (tools.turmdecker.com)</p>
+    </div>
   </ContentSection>
 
   <!-- SECTION 3 -->
