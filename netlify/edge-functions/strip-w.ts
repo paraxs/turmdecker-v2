@@ -1,15 +1,12 @@
-export default async (request: Request) => {
+export default async (request: Request, context: any) => {
   const url = new URL(request.url);
 
-  // Nur wenn ?w= existiert -> auf gleiche URL ohne Query redirecten
   if (url.searchParams.has("w")) {
-    url.searchParams.delete("w");
-
-    // Für maximale SEO-Sauberkeit: alle Query-Parameter wegwerfen
+    // alles weg -> sauberste SEO-Variante
     url.search = "";
-
     return Response.redirect(url.toString(), 301);
   }
 
-  return fetch(request);
+  // WICHTIG: NICHT fetch(request)
+  return context.next();
 };
