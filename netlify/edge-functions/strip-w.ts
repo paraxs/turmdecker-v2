@@ -1,12 +1,11 @@
 export default async (request: Request, context: any) => {
   const url = new URL(request.url);
 
+  // Spam-Parameter w= -> immer auf Startseite
   if (url.searchParams.has("w")) {
-    // alles weg -> sauberste SEO-Variante
-    url.search = "";
-    return Response.redirect(url.toString(), 301);
+    return Response.redirect(new URL("/", url).toString(), 301);
   }
 
-  // WICHTIG: NICHT fetch(request)
+  // KEIN fetch(request) -> sonst Loop-Risiko
   return context.next();
 };
