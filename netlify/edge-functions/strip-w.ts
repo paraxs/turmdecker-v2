@@ -6,6 +6,10 @@ export default async (request: Request, context: any) => {
     return Response.redirect(new URL("/", url).toString(), 301);
   }
 
-  // KEIN fetch(request) -> sonst Loop-Risiko
-  return context.next();
+  const res = await context.next();
+  const out = new Response(res.body, res);
+  out.headers.set("x-td-edge", "1"); // Debug-Beweis
+  return out;
 };
+
+export const config = { path: "/*" };
