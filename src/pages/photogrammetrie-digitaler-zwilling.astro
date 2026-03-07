@@ -11,58 +11,104 @@ import imgOrthofoto from "../assets/photogrammetrie-digitaler-zwilling/photogram
 ---
 
 <Layout
-  title="Photogrammetrie & Digitaler Zwilling für Dächer | Turmdecker"
-  description="3D-Bestandsaufnahme per Drohne: Modell, Orthofotos, Maße. Wertvoll wird’s durch fachliche Interpretation aus Spenglerei, Schindel- und Dachbau."
+  title="Photogrammetrie, Drohnen-Inspektion & Digitaler Zwilling | Turmdecker"
+  description="Photogrammetrie und Drohnen-Inspektion für Dächer, Kirchtürme und historische Bauten in Österreich. Digitale Bestandsaufnahme mit 3D-Modell, Orthofotos und bautechnischer Auswertung."
 >
   <Header slot="header" />
 
-	  <Hero
-	  images={[heroImage]}
-	  heightClass="min-h-[55vh]"
-	  alignClass="items-start"
-	  contentClass="pt-28 md:pt-32 pb-10 md:pb-14"
-	  overlayClass="bg-black/30"
-	  bgOpacityClass="opacity-55"
-	  storageKey="tdHero:photogrammetrie"
-	>
-	  <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">
-		Digitale Bestandsaufnahme
-	  </p>
+  <Hero
+    images={[heroImage]}
+    heightClass="min-h-[55vh]"
+    alignClass="items-start"
+    contentClass="pt-28 md:pt-32 pb-10 md:pb-14"
+    overlayClass="bg-black/30"
+    bgOpacityClass="opacity-55"
+    storageKey="tdHero:photogrammetrie"
+  >
+    <p class="uppercase tracking-[0.2em] text-white/70 text-xs md:text-sm">
+      Digitale Bestandsaufnahme
+    </p>
 
-	  <h1 class="text-4xl md:text-6xl font-bold mt-4">
-		PHOTOGRAMMETRIE<br />
-		<span class="text-primary">& DIGITALER ZWILLING.</span>
-	  </h1>
+    <h1 class="text-4xl md:text-6xl font-bold mt-4">
+      PHOTOGRAMMETRIE,<br />
+      <span class="text-primary">DROHNEN-INSPEKTION & DIGITALER ZWILLING.</span>
+    </h1>
 
-	  <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
-		Wir liefern nicht nur 3D-Daten, sondern eine verwertbare Baudokumentation – fachlich interpretiert aus Sicht
-		<strong> Spenglerei, Schindeldeckung und Dachbau</strong>.
-		Besonders sinnvoll für <strong> Dächer, Sakralbauten und Bauwerke im Bestand</strong>:
-		belastbare Maße/Details und eine technisch saubere Entscheidungsgrundlage für Planung, Angebot und Ausführung.
-	  </p>
-	</Hero>
+    <p class="mt-6 max-w-2xl text-white/85 text-lg leading-relaxed">
+      Für Dächer, Kirchtürme und historische Bauten in ganz Österreich.
+      Wir liefern nicht nur 3D-Daten, sondern eine verwertbare, bautechnische Dokumentation –
+      fachlich interpretiert aus Sicht von <strong>Spenglerei, Schindeldeckung und Dachbau</strong>.
+    </p>
+  </Hero>
 
   <section class="py-14 md:py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-6">
+        Digitale Bestandsaufnahme für Dächer, Türme und Bauwerke im Bestand
+      </h2>
+
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Wir liefern nicht bloß große Datenmengen, sondern eine technisch verwertbare Entscheidungsgrundlage.
+        Der entscheidende Unterschied liegt in der Auswertung:
+        Wir beurteilen die Drohnenaufnahmen nicht aus der Sicht eines reinen Vermessungsdienstleisters,
+        sondern aus der Praxis von Dachdecker-, Spengler- und Schindelarbeiten.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Gerade bei Kirchtürmen, historischen Dächern und komplexen Bestandsbauten macht das den Unterschied.
+        Wir wissen, wo konstruktive Schwachstellen typischerweise liegen, welche Details bei Anschlüssen relevant sind
+        und welche Schadbilder für Angebot, Planung und spätere Ausführung wirklich entscheidend sind.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed">
+        Ob in Wien, Tirol oder Vorarlberg:
+        Für Dächer, Sakralbauten und schwer zugängliche Gebäude liefern wir belastbare Maße,
+        hochauflösende Details und eine saubere technische Grundlage für Planer, Bauämter und ausführende Gewerke –
+        ohne Hubsteiger, ohne aufwendige Begehung und in deutlich kürzerer Zeit.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-16 bg-white border-t border-gray-200">
     <div class="container mx-auto px-4 max-w-4xl">
       <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-6">
         Was Sie am Ende bekommen
       </h2>
 
       <p class="text-gray-700 leading-relaxed mb-8">
-        Eine technische Dokumentation für Planung, Wartung und Entscheidungsfindung.
+        Eine technische Dokumentation, die direkt in Planung, Wartung und Entscheidungsfindung einfließt.
       </p>
 
-      <ul class="space-y-3 text-gray-700">
-        <li>• Hochauflösende Foto-Dokumentation (auch schwer zugängliche Bereiche)</li>
-        <li>• 3D-Modell / „Digitaler Zwilling“ zur visuellen Prüfung & Kommunikation</li>
-        <li>• Orthofotos/„Orthomosaics“ für eine saubere Draufsicht & Planungsgrundlage</li>
-        <li>• Optional: Punktwolke / Mesh (je nach Workflow)</li>
+      <ul class="space-y-4 text-gray-700">
+        <li>
+          • <strong>Interaktives 3D-Modell / Digitaler Zwilling:</strong>
+          Über einen passwortgeschützten Link im Browser abrufbar.
+          Alle Beteiligten greifen auf dasselbe Modell zu und können direkt Längen, Flächen und Details prüfen –
+          ohne zusätzliche Software.
+        </li>
+        <li>
+          • <strong>Hochauflösende Mängel-Dokumentation:</strong>
+          Scharfe Detailaufnahmen von Traufen, Untersichten, Anschlüssen und schwer zugänglichen Schadstellen.
+        </li>
+        <li>
+          • <strong>Orthofotos / Orthomosaics:</strong>
+          Verzerrungsfreie, maßstabsgetreue Draufsichten als belastbare Grundlage für Aufmaß,
+          CAD-Weiterverarbeitung und Projektplanung.
+        </li>
+        <li>
+          • <strong>Optional: Punktwolken oder 3D-Meshes:</strong>
+          Für Planer, Büros und Projektbeteiligte, die die Daten in eigenen Systemen weiterverarbeiten wollen.
+        </li>
       </ul>
 
       <div class="mt-10 p-6 rounded-md bg-gray-50 border border-gray-200">
-        <h3 class="font-bold text-dark-900 mb-2">Wichtig</h3>
+        <h3 class="font-bold text-dark-900 mb-2">Wichtig: die rechtliche Einordnung</h3>
         <p class="text-gray-700 leading-relaxed">
-          Das hier liefert die Grundlage für echte Entscheidungen. Aber Achtung: Es ist keine amtliche Kataster-Vermessung. Wenn Sie „rechtsverbindliche“ Grenzvermessungen brauchen, ist das ein anderer Leistungsbereich.
+          Unsere Modelle und Aufmaße liefern die präzise Grundlage für Kostenvoranschläge,
+          Materialberechnungen und Handwerker-Angebote.
+          Sie ersetzen jedoch keine amtliche Kataster-Vermessung.
+          Wenn eine rechtsverbindliche Grenzvermessung für Grundbuch oder Behörden erforderlich ist,
+          muss zwingend ein staatlich befugter Geometer hinzugezogen werden.
         </p>
       </div>
     </div>
@@ -71,13 +117,28 @@ import imgOrthofoto from "../assets/photogrammetrie-digitaler-zwilling/photogram
   <section class="py-14 md:py-16 bg-gray-50 border-t border-gray-200">
     <div class="container mx-auto px-4 max-w-4xl">
       <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-6">
-        Wofür das bei Türmen & Dächern Sinn macht
+        Wofür die Drohnen-Inspektion bei Türmen & Dächern Sinn macht
       </h2>
-      <ul class="space-y-3 text-gray-700">
-        <li>• <strong>Schadstellen finden:</strong> Sauber lokalisieren statt vom Boden aus raten.</li>
-        <li>• <strong>Angebote präzisieren:</strong> Material und Aufwand lassen sich am Modell messen.</li>
-        <li>• <strong>Vorher/Nachher-Doku:</strong> Transparenz für Auftraggeber, Pfarre und Denkmalpflege.</li>
-        <li>• <strong>Wiederholbare Kontrolle:</strong> Jährliche Flüge machen Veränderungen am Bauwerk sichtbar.</li>
+
+      <ul class="space-y-4 text-gray-700">
+        <li>
+          • <strong>Schadstellen präzise finden:</strong>
+          Defekte Anschlüsse, beschädigte Schindeln, Risse im Blei oder kritische Details lassen sich sauber lokalisieren,
+          statt vom Boden aus nur zu vermuten.
+        </li>
+        <li>
+          • <strong>Angebote hart kalkulieren:</strong>
+          Flächen, Laufmeter und relevante Maße können direkt am Modell geprüft werden.
+          Das reduziert Unsicherheit, spart Verschnitt-Puffer und macht Angebote belastbarer.
+        </li>
+        <li>
+          • <strong>Vorher-/Nachher-Dokumentation:</strong>
+          Eine nachvollziehbare Grundlage für Auftraggeber, Gemeinden, Pfarren und Denkmalpflege.
+        </li>
+        <li>
+          • <strong>Wiederholbare Kontrolle:</strong>
+          Regelmäßige Inspektionsflüge machen Veränderungen, Schadensfortschritt oder bauliche Setzungen über die Jahre sichtbar.
+        </li>
       </ul>
     </div>
   </section>
@@ -87,7 +148,7 @@ import imgOrthofoto from "../assets/photogrammetrie-digitaler-zwilling/photogram
       <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-8">
         Wie das in der Praxis aussieht
       </h2>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         <div>
           <figure class="relative overflow-hidden rounded-sm shadow-sm bg-black/5 aspect-[4/3]">
@@ -99,7 +160,9 @@ import imgOrthofoto from "../assets/photogrammetrie-digitaler-zwilling/photogram
             />
           </figure>
           <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-            <strong>Die Befliegung:</strong> Auch Details, die vom Boden nie sichtbar wären, werden sauber erfasst.
+            <strong>Die Befliegung:</strong>
+            Ohne aufwendige Rüstzeiten, Hubsteiger oder großflächige Absperrungen.
+            Auch komplexe Untersichten und schwer erreichbare Bereiche lassen sich vollständig erfassen.
           </p>
         </div>
 
@@ -113,7 +176,8 @@ import imgOrthofoto from "../assets/photogrammetrie-digitaler-zwilling/photogram
             />
           </figure>
           <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-            <strong>Das 3D-Modell:</strong> Ideal, um Schäden räumlich zu verorten und Maßnahmen verständlich zu erklären.
+            <strong>Der Digitale Zwilling:</strong>
+            Schäden, Anschlüsse und konstruktive Details lassen sich räumlich verorten und für alle Beteiligten verständlich darstellen.
           </p>
         </div>
 
@@ -127,27 +191,34 @@ import imgOrthofoto from "../assets/photogrammetrie-digitaler-zwilling/photogram
             />
           </figure>
           <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-            <strong>Das Orthofoto:</strong> Verzerrungsfreie Draufsicht als saubere Grundlage für Aufmaß und Planung.
+            <strong>Das Orthofoto:</strong>
+            Die maßstabsgetreue Draufsicht für präzise Flächenberechnungen,
+            saubere Projektvorbereitung und belastbares Aufmaß.
           </p>
         </div>
       </div>
 
       <p class="mt-8 text-xs text-gray-500 max-w-3xl">
-        Mit diesen Daten haben alle Beteiligten – Pfarre, Gemeinde, Planer und Handwerker – das gleiche Bild vor Augen.
+        Mit diesen Daten haben alle Projektbeteiligten vom ersten Tag an dieselbe Grundlage vor Augen:
+        Planer, Bauherrschaft, Denkmalpflege und ausführende Gewerke arbeiten auf derselben Informationsbasis.
       </p>
     </div>
   </section>
 
   <section class="py-20 bg-primary text-white text-center">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold mb-5">
         Digitale Bestandsaufnahme geplant?
       </h2>
+      <p class="max-w-2xl mx-auto text-white/90 mb-8">
+        Schluss mit unpräzisen Schätzungen und zeitaufwendigen Begehungen.
+        Wir operieren österreichweit und liefern eine belastbare Grundlage für Planung, Angebot und Ausführung.
+      </p>
       <a
         href="/kontakt/"
         class="inline-block bg-white text-primary hover:bg-dark-900 hover:text-white px-10 py-4 font-bold rounded transition-all shadow-xl"
       >
-        Kontakt aufnehmen
+        Jetzt Kontakt aufnehmen
       </a>
     </div>
   </section>
