@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { Image } from "astro:assets";
+import OffsetFrame from "../components/OffsetFrame.astro";
 import heroImage from "../assets/photogrammetrie-digitaler-zwilling/photogrammetrie-digitaler-zwilling04.webp";
 import imgDrohne from "../assets/photogrammetrie-digitaler-zwilling/photogrammetrie-digitaler-zwilling01.webp";
 import imgModell from "../assets/photogrammetrie-digitaler-zwilling/photogrammetrie-digitaler-zwilling02.webp";
@@ -151,15 +152,15 @@ import imgOrthofoto from "../assets/photogrammetrie-digitaler-zwilling/photogram
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         <div>
-          <figure class="relative overflow-hidden rounded-sm shadow-sm bg-black/5 aspect-[4/3]">
+          <OffsetFrame innerClass="bg-black/5 aspect-[4/3]">
             <Image
               src={imgDrohne}
               alt="Drohne bei der Befliegung eines Kirchturms"
               class="w-full h-full object-cover"
               loading="lazy"
             />
-          </figure>
-          <p class="mt-3 text-sm text-gray-700 leading-relaxed">
+          </OffsetFrame>
+          <p class="mt-6 text-sm text-gray-700 leading-relaxed">
             <strong>Die Befliegung:</strong>
             Ohne aufwendige Rüstzeiten, Hubsteiger oder großflächige Absperrungen.
             Auch komplexe Untersichten und schwer erreichbare Bereiche lassen sich vollständig erfassen.
@@ -167,30 +168,30 @@ import imgOrthofoto from "../assets/photogrammetrie-digitaler-zwilling/photogram
         </div>
 
         <div>
-          <figure class="relative overflow-hidden rounded-sm shadow-sm bg-black/5 aspect-[4/3]">
+          <OffsetFrame innerClass="bg-black/5 aspect-[4/3]">
             <Image
               src={imgModell}
               alt="3D-Modell eines Kirchturms"
               class="w-full h-full object-cover"
               loading="lazy"
             />
-          </figure>
-          <p class="mt-3 text-sm text-gray-700 leading-relaxed">
+          </OffsetFrame>
+          <p class="mt-6 text-sm text-gray-700 leading-relaxed">
             <strong>Der Digitale Zwilling:</strong>
             Schäden, Anschlüsse und konstruktive Details lassen sich räumlich verorten und für alle Beteiligten verständlich darstellen.
           </p>
         </div>
 
         <div>
-          <figure class="relative overflow-hidden rounded-sm shadow-sm bg-black/5 aspect-[4/3]">
+          <OffsetFrame innerClass="bg-black/5 aspect-[4/3]">
             <Image
               src={imgOrthofoto}
               alt="Orthofoto eines Kirchendachs"
               class="w-full h-full object-cover"
               loading="lazy"
             />
-          </figure>
-          <p class="mt-3 text-sm text-gray-700 leading-relaxed">
+          </OffsetFrame>
+          <p class="mt-6 text-sm text-gray-700 leading-relaxed">
             <strong>Das Orthofoto:</strong>
             Die maßstabsgetreue Draufsicht für präzise Flächenberechnungen,
             saubere Projektvorbereitung und belastbares Aufmaß.

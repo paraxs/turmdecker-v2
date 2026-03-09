@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { Image } from "astro:assets";
+import OffsetFrame from "../components/OffsetFrame.astro";
 
 // Hero
 import heroImage from "../assets/Workshop/Workshop hero 1.webp";
@@ -132,13 +133,13 @@ import ws4 from "../assets/Workshop/Workshop5.webp";
       <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-4">
         Einblick in den Workshop
       </h2>
-      <p class="text-gray-700 leading-relaxed mb-8">
+      <p class="text-gray-700 leading-relaxed mb-10">
 	  Impressionen vom Handwerk: unverfälscht, nah am Material, ohne Lärm und Hektik.
 		</p>
 
       <!-- “Bar”: auf Mobile horizontal scroll, ab md als 4er Reihe -->
       <div class="flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible">
-        <figure class="min-w-[78%] md:min-w-0 overflow-hidden rounded-sm shadow-sm bg-white">
+        <OffsetFrame wrapperClass="min-w-[78%] md:min-w-0 flex-shrink-0" innerClass="bg-white">
           <Image
             src={ws1}
             alt="Workshop Lärchenschindeln: Praxisarbeit am Übungsdach"
@@ -146,9 +147,9 @@ import ws4 from "../assets/Workshop/Workshop5.webp";
             decoding="async"
             class="w-full h-64 md:h-56 object-cover"
           />
-        </figure>
+        </OffsetFrame>
 
-        <figure class="min-w-[78%] md:min-w-0 overflow-hidden rounded-sm shadow-sm bg-white">
+        <OffsetFrame wrapperClass="min-w-[78%] md:min-w-0 flex-shrink-0" innerClass="bg-white">
           <Image
             src={ws2}
             alt="Lärchenschindeln Workshop: Herstellung und Auswahl"
@@ -156,9 +157,9 @@ import ws4 from "../assets/Workshop/Workshop5.webp";
             decoding="async"
             class="w-full h-64 md:h-56 object-cover"
           />
-        </figure>
+        </OffsetFrame>
 
-        <figure class="min-w-[78%] md:min-w-0 overflow-hidden rounded-sm shadow-sm bg-white">
+        <OffsetFrame wrapperClass="min-w-[78%] md:min-w-0 flex-shrink-0" innerClass="bg-white">
           <Image
             src={ws3}
             alt="Workshop Holzschindeln: Montage und Details"
@@ -166,9 +167,9 @@ import ws4 from "../assets/Workshop/Workshop5.webp";
             decoding="async"
             class="w-full h-64 md:h-56 object-cover"
           />
-        </figure>
+        </OffsetFrame>
 
-        <figure class="min-w-[78%] md:min-w-0 overflow-hidden rounded-sm shadow-sm bg-white">
+        <OffsetFrame wrapperClass="min-w-[78%] md:min-w-0 flex-shrink-0" innerClass="bg-white">
           <Image
             src={ws4}
             alt="Qualitätskontrolle im Lärchenschindeln Workshop"
@@ -176,7 +177,7 @@ import ws4 from "../assets/Workshop/Workshop5.webp";
             decoding="async"
             class="w-full h-64 md:h-56 object-cover"
           />
-        </figure>
+        </OffsetFrame>
       </div>
     </div>
   </section>

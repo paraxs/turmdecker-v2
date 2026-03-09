@@ -1,0 +1,30 @@
+---
+interface Props {
+  wrapperClass?: string;
+  innerClass?: string;
+  frameClass?: string;
+}
+
+const {
+  wrapperClass = "",
+  innerClass = "",
+  frameClass = "",
+} = Astro.props as Props;
+---
+
+<section class={`relative group ${wrapperClass}`}>
+  <div class={`absolute top-4 left-4 w-full h-full border-2 border-primary/20 rounded z-0 ${frameClass}`}></div>
+  <div class={`offset-frame-media relative z-10 rounded overflow-hidden shadow-lg bg-gray-200 ${innerClass}`}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .offset-frame-media :global(img) {
+    transition: transform 700ms ease;
+  }
+
+  .group:hover .offset-frame-media :global(img) {
+    transform: scale(1.05);
+  }
+</style>

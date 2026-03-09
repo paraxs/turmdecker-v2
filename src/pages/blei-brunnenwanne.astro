@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { Image } from "astro:assets";
+import OffsetFrame from "../components/OffsetFrame.astro";
 
 // Hero-Hintergrund (wie bei den anderen Seiten)
 import heroImage from "../assets/blei-brunnenwanne/blei-brunnenwanne04.webp";
@@ -81,28 +82,32 @@ import imgBrunnen3 from "../assets/blei-brunnenwanne/blei-brunnenwanne03.webp";
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <figure class="overflow-hidden rounded-sm shadow-sm bg-white">
-          <Image
-            src={imgBrunnen1}
-            alt="Einpassen einer Blei-Brunnenwanne in einen historischen Dorfbrunnen"
-            loading="lazy"
-            decoding="async"
-            class="w-full h-64 md:h-80 object-cover"
-          />
-          <figcaption class="px-4 py-3 text-sm text-gray-600">
+        <figure>
+          <OffsetFrame innerClass="bg-white">
+            <Image
+              src={imgBrunnen1}
+              alt="Einpassen einer Blei-Brunnenwanne in einen historischen Dorfbrunnen"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-64 md:h-80 object-cover"
+            />
+          </OffsetFrame>
+          <figcaption class="mt-6 px-4 text-sm text-gray-600">
             Passgenaues Einpassen der Bleiwanne in den vorhandenen Brunnenkörper.
           </figcaption>
         </figure>
 
-        <figure class="overflow-hidden rounded-sm shadow-sm bg-white">
-          <Image
-            src={imgBrunnen2}
-            alt="Fertig verschweißte Blei-Brunnenwanne, bereit zur Wiederbefüllung"
-            loading="lazy"
-            decoding="async"
-            class="w-full h-64 md:h-80 object-cover"
-          />
-          <figcaption class="px-4 py-3 text-sm text-gray-600">
+        <figure>
+          <OffsetFrame innerClass="bg-white">
+            <Image
+              src={imgBrunnen2}
+              alt="Fertig verschweißte Blei-Brunnenwanne, bereit zur Wiederbefüllung"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-64 md:h-80 object-cover"
+            />
+          </OffsetFrame>
+          <figcaption class="mt-6 px-4 text-sm text-gray-600">
             Voll verschweißte Bleiwanne – alle Stöße Blei in Blei, dauerhaft dicht und wartungsarm.
           </figcaption>
         </figure>
