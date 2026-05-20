@@ -12,7 +12,11 @@ https://www.turmdecker.com/*  https://turmdecker.com/:splat   301!
 # ---------------------------------------------------------
 /dachdecken/holzschindel/*    /laerchenschindel/              301!
 /dachdecken/kreuzstecken/*    /laerchenschindel/              301!
+/dachdecken/kupfer/           /eindeckungen/                  301!
 /dachdecken/*                 /eindeckungen/                  301!
+/spezialarbeiten/verbleiungen/           /arbeiten-mit-blei/  301!
+/spezialarbeiten/hoehen-undseilarbeiten/ /spezialarbeiten/    301!
+/spezialarbeiten/restaurierung/          /restaurierung/      301!
 
 # ---------------------------------------------------------
 # 3) WP-/SPAM-URLS NICHT RETTEN: bewusst 404 (kein Soft-404-Redirect)

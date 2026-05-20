@@ -1,9 +1,10 @@
 export default async (request: Request, context: any) => {
   const url = new URL(request.url);
 
-  // Spam-Parameter w= -> immer auf Startseite
+  // Spam-Parameter w= entfernen, Zielseite aber beibehalten.
   if (url.searchParams.has("w")) {
-    return Response.redirect(new URL("/", url).toString(), 301);
+    url.searchParams.delete("w");
+    return Response.redirect(url.toString(), 301);
   }
 
   const res = await context.next();
