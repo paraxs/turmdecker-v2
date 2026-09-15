@@ -4,11 +4,17 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import ContentSection from "../components/ContentSection.astro";
+import { Image } from "astro:assets";
 
 import imgLs01 from "../assets/laerchenschindel/laerchenschindel04.webp";
 import imgLs02 from "../assets/laerchenschindel/laerchenschindel02.webp";
 import imgLs03 from "../assets/laerchenschindel/laerchenschindel03.webp";
 import imgLs05 from "../assets/laerchenschindel/laerchenschindel05.webp";
+import imgSchrunsTurm from "../assets/laerchenschindel/schruns-pfarrkirche-turm.webp";
+import imgSchrunsMoos from "../assets/laerchenschindel/schruns-schindeln-moos-flechten.webp";
+import imgSchrunsBruch from "../assets/laerchenschindel/schruns-gebrochene-schindeln.webp";
+import imgSchrunsReparatur from "../assets/laerchenschindel/schruns-geoeffneter-reparaturbereich.webp";
+import imgSchrunsNeu from "../assets/laerchenschindel/schruns-neue-und-alte-schindeln.webp";
 const SHINGLE_CALC_URL = "https://tools.turmdecker.com/bedarfsermittlung-holzschindel";
 ---
 
@@ -50,13 +56,17 @@ const SHINGLE_CALC_URL = "https://tools.turmdecker.com/bedarfsermittlung-holzsch
   >
     <p>
       Lärchenschindeln sind im Alpenraum seit Jahrhunderten bewährt.
-      Entscheidend sind Holzqualität, die richtige Spaltung, eine passende
-      Deckungsart und Hinterlüftung – dann sind mehrere Jahrzehnte Nutzungsdauer realistisch.
+      Ihre Nutzungsdauer hängt von Materialqualität, Dachneigung, Exposition,
+      Hinterlüftung, Unterkonstruktion und Pflege ab. Eine feste Lebensdauer
+      lässt sich daraus nicht garantieren.
     </p>
     <ul class="list-disc pl-5 mt-4 space-y-2">
-      <li>Handgespaltene Lärche mit stehenden Jahresringen</li>
+      <li>Handgespaltene Lärchenschindeln mit stehenden, möglichst eng gewachsenen Jahresringen und der typischen rötlichen Lärchenholzfärbung</li>
+      <li>Aus unserer Praxis: etwa 11 mm als Mindestdicke der Schindeln – ein betrieblicher Erfahrungswert, keine allgemeine Normvorgabe</li>
       <li>2- oder 3-fach Deckung je nach Dachneigung und Exposition</li>
       <li>Unterkonstruktion als hinterlüftete Sparschalung bzw. Traglattung</li>
+      <li>Ausreichende Hinterlüftung und fachgerechte Eckausbildungen, Mulden und Ortgänge</li>
+      <li>Regelmäßiges Entfernen von Laub und Nadeln, damit die Deckung abtrocknen kann</li>
     </ul>
   </ContentSection>
 
@@ -121,10 +131,88 @@ const SHINGLE_CALC_URL = "https://tools.turmdecker.com/bedarfsermittlung-holzsch
       schwer zugänglichen Kirchtürmen.
     </p>
     <p class="mt-4">
+      Bei der Bestandsaufnahme achten wir auf Moos und Flechten, lange feucht
+      bleibende Bereiche, gebrochene oder morsche Schindeln sowie Laub- und
+      Nadelablagerungen. Auch ältere Hagelschäden können eine Rolle spielen:
+      Hagel kann Holzfasern beschädigen, obwohl zunächst wenig zu sehen ist.
+      Verstärkte Feuchteaufnahme kann in den folgenden Jahren zum Materialabbau
+      und später zum Ausbrechen der Schindeln führen.
+    </p>
+    <p class="mt-4">
+      Wir prüfen auch den Aufbau: Eine ungeeignete Vollschalung, direkte Montage
+      auf Pappe oder Unterspannbahn sowie zu geringe oder fehlende Hinterlüftung
+      und fehlende Firstentlüftung können die Trocknung beeinträchtigen.
+      Besonders bei beheizten Gebäuden sind mögliche Kondensatprobleme zu beachten.
+      Entscheidend ist die Beurteilung der gesamten Konstruktion vor Ort.
+    </p>
+    <p class="mt-4">
       Auf Wunsch dokumentieren wir den Zustand vor und nach der Sanierung
       fotografisch oder mittels Digitalem Zwilling.
     </p>
   </ContentSection>
+
+  <ContentSection
+    title="Teilreparatur oder Neueindeckung?"
+    image={imgSchrunsReparatur}
+    alt="Geöffnete Schindeldeckung mit sichtbarer Unterkonstruktion und neuen Holzschindeln"
+    reverse={true}
+  >
+    <p>
+      Als grobe Orientierungswerte aus unserer Praxis gelten die folgenden
+      75 % bzw. 50 %: Ist etwa 75 % der vorhandenen Deckung noch technisch intakt,
+      kann eine Teilreparatur interessant sein. Nähert sich der Reparaturaufwand ungefähr
+      50 % der Kosten einer Neueindeckung, sollte eine vollständige Erneuerung
+      wirtschaftlich mitgeprüft werden.
+    </p>
+    <p class="mt-4">
+      Das sind betriebliche Erfahrungswerte, keine Normen oder pauschalen
+      Entscheidungsgrenzen. Bei älteren Dächern zählt besonders die voraussichtliche
+      Restnutzungsdauer der verbleibenden Altdeckung. Zustand, Konstruktion und
+      Zugänglichkeit müssen gemeinsam beurteilt werden; eine Garantie ergibt
+      sich aus den Prozentwerten nicht.
+    </p>
+  </ContentSection>
+
+  <ContentSection
+    title="Praxisbeispiel: Pfarrkirche Schruns, Vorarlberg"
+    image={imgSchrunsTurm}
+    alt="Kirchturm und Fassade der Pfarrkirche Schruns"
+  >
+    <p>
+      Am Kirchturm der Pfarrkirche Schruns zeigte die bestehende
+      Lärchenschindeldeckung in belasteten Bereichen starken Moos- und
+      Flechtenbewuchs sowie gebrochene und teilweise morsche Schindeln.
+      Nach unserer Einschätzung waren noch rund 90 % der Deckung intakt.
+      Deshalb entschieden wir uns für eine Teilreparatur statt einer
+      vollständigen Neueindeckung.
+    </p>
+    <p class="mt-4">
+      Die schadhaften Bereiche wurden mit 40 cm langen Lärchenschindeln in
+      Dreifachdeckung erneuert. Die Ausführung erfolgte mittels Seilzugang.
+      Die Bilder aus unserer Projektdokumentation zeigen den Bestand,
+      den geöffneten Reparaturbereich und die erneuerten Teilflächen.
+    </p>
+  </ContentSection>
+
+  <div class="container mx-auto px-4 pb-16 md:pb-24">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <figure>
+        <Image src={imgSchrunsMoos} alt="Moos und Flechten auf verwitterten Holzschindeln am Turm"
+          width={800} loading="lazy" class="w-full h-auto rounded shadow-lg" />
+        <figcaption class="mt-4 text-gray-600">Moos- und Flechtenbewuchs an der bestehenden Deckung.</figcaption>
+      </figure>
+      <figure>
+        <Image src={imgSchrunsBruch} alt="Gebrochene Holzschindeln mit ausgebrochenen Stellen in der Deckung"
+          width={800} loading="lazy" class="w-full h-auto rounded shadow-lg" />
+        <figcaption class="mt-4 text-gray-600">Gebrochene Schindeln vor der Reparatur.</figcaption>
+      </figure>
+      <figure>
+        <Image src={imgSchrunsNeu} alt="Helle neue Holzschindeln neben dunkler bestehender Schindeldeckung"
+          width={800} loading="lazy" class="w-full h-auto rounded shadow-lg" />
+        <figcaption class="mt-4 text-gray-600">Erneuerte Teilfläche neben der erhaltenen Altdeckung.</figcaption>
+      </figure>
+    </div>
+  </div>
 
   <!-- CTA-BLOCK: identischer Stil wie bei Eindeckungen -->
   <section class="bg-primary text-white py-16 text-center">
